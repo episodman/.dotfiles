@@ -95,24 +95,13 @@ paq {'ful1e5/onedark.nvim'}
 paq {'EdenEast/nightfox.nvim'}
 paq {'shaunsingh/nord.nvim'}
 paq {'marko-cerovac/material.nvim'}
---paq {'navarasu/onedark.nvim'}
 paq {'ackyshake/Spacegray.vim'}
--- paq {'ghifarit53/tokyonight-vim'}
-paq {'arcticicestudio/nord-vim'}
 paq {'habamax/vim-polar'}
---paq {'joshdick/onedark.vim'}
-paq {'fratajczak/one-monokai-vim'}
-paq {'ayu-theme/ayu-vim'}
-paq {'drewtempelmeyer/palenight.vim'}
-paq {'dracula/vim'}
 paq {'tomasr/molokai'}
-paq {'kristijanhusak/vim-hybrid-material'}
--- Plug 'sonph/onehalf', {'rtp': 'vim/'}
 paq {'gruvbox-community/gruvbox'}
 paq {'altercation/vim-colors-solarized'}
 paq {'NLKNguyen/papercolor-theme'}
 paq {'herrbischoff/cobalt2.vim'}
--- Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 paq {'psliwka/vim-smoothie'}
 paq {'vim-airline/vim-airline'}
 paq {'flazz/vim-colorschemes'}
@@ -231,18 +220,54 @@ vim.g.tokyonight_enable_italic = 1
 
 
 -- vim.g.material_style = 'deep ocean'
--- vim.g.material_style ='Oceanic'
+vim.g.material_style ='Oceanic'
 -- vim.g.material_style ='Palenight'
 -- vim.g.material_style = 'darker'
 -- vim.g.material_style = 'lighter'
--- vim.g.material_italic_comments = true
--- vim.g.material_italic_keywords = true
--- vim.g.material_italic_functions = true
--- vim.g.material_italic_variables = true
--- vim.g.material_contrast = true
--- vim.g.material_borders = true
--- vim.g.material_disable_background = false
+--[[ vim.g.material_italic_comments = true
+vim.g.material_italic_keywords = true
+vim.g.material_italic_functions = true
+vim.g.material_italic_variables = false
+vim.g.material_contrast = true
+vim.g.material_borders = true
+vim.g.material_disable_background = false ]]
+
+require('material').setup({
+
+	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
+	borders = false, -- Enable borders between verticaly split windows
+
+	italics = {
+		comments = true, -- Enable italic comments
+		keywords = true, -- Enable italic keywords
+		functions = true, -- Enable italic functions
+		strings = false, -- Enable italic strings
+		variables = false -- Enable italic variables
+	},
+
+	contrast_windows = { -- Specify which windows get the contrasted (darker) background
+		"terminal", -- Darker terminal background
+		"packer", -- Darker packer background
+		"qf" -- Darker qf list background
+	},
+
+	text_contrast = {
+		lighter = false, -- Enable higher contrast text for lighter style
+		darker = false -- Enable higher contrast text for darker style
+	},
+
+	disable = {
+		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+		term_colors = false, -- Prevent the theme from setting terminal colors
+		eob_lines = false -- Hide the end-of-buffer lines
+	},
+
+	custom_highlights = {} -- Overwrite highlights with your own
+})
+vim.cmd[[colorscheme material]]
+--
 -- require('material').set()
+--
 
 -- local nightfox = require('nightfox').load()
 -- local nightfox = require('nightfox')
@@ -282,13 +307,13 @@ vim.g.tokyonight_enable_italic = 1
 -- )
 -- nightfox.load()
 
--- vim.g.nord_italic_comments = true
--- vim.g.nord_italic_keywords = true
--- vim.g.nord_italic_functions = true
--- vim.g.nord_italic_variables = true
--- vim.g.nord_contrast = true
--- vim.g.nord_borders = false
--- vim.g.nord_disable_background = true
+-- Example config in lua
+--[[ vim.g.nord_contrast = true
+vim.g.nord_borders = false
+vim.g.nord_disable_background = false
+vim.g.nord_italic = true ]]
+
+-- Load the colorscheme
 -- require('nord').set()
 
 -- cmd 'colorscheme tokyonight'
@@ -503,7 +528,7 @@ map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 
 vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[colorscheme gruvbox]])
 
 --[[ require("onedark").setup({
   functionStyle = "italic",
@@ -533,51 +558,50 @@ vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 -- require'lspconfig'.ccls.setup{on_attach=require'completion'.on_attach}
 --
 -- LSP
-local nvim_lsp = require('lspconfig')
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'ccls' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
+--local nvim_lsp = require('lspconfig')
+---- Use an on_attach function to only map the following keys
+---- after the language server attaches to the current buffer
+--local on_attach = function(client, bufnr)
+--  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+--  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+--
+--  -- Enable completion triggered by <c-x><c-o>
+--  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+--
+--  -- Mappings.
+--  local opts = { noremap=true, silent=true }
+--
+--  -- See `:help vim.lsp.*` for documentation on any of the below functions
+--  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+--  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+--  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+--  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+--  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+--  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+--  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+--  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+--  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+--  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+--  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+--  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+--  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+--  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+--  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+--end
+--
+---- Use a loop to conveniently call 'setup' on multiple servers and
+---- map buffer local keybindings when the language server attaches
+--local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'ccls' }
+--for _, lsp in ipairs(servers) do
+--  nvim_lsp[lsp].setup {
+--    on_attach = on_attach,
+--    flags = {
+--      debounce_text_changes = 150,
+--    }
+--  }
+--end
 -- LSP signature
 cfg = {
   bind = true, -- This is mandatory, otherwise border config won't get registered.

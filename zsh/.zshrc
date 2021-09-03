@@ -94,7 +94,7 @@ plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 autoload -U compinit && compinit
 # bindkey '\e' autosuggest-accept
 # bindkey '^ ' autosuggest-accept
-bindkey '^n' autosuggest-accept
+bindkey '^l' autosuggest-accept
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,12 +145,13 @@ alias algo2='cd ~/share/dev/algorithm_data_structure/c_algorithm_2'
 alias moe='source ~/mount-oeserver.sh'
 alias autotest='cd /home/jungyongchoi/oe-server2/automation-tests'
 #alias vi='~/nvim.appimage'
-alias vi='~/nvim.appimage'
-alias vim='~/nvim.appimage'
+# alias vi='~/nvim.appimage'
+# alias vim='~/nvim.appimage'
 # alias vi='nvim'
+alias vi='nvim'
 
-alias svi='sudo ~/nvim.appimage'
-alias svim='sudo ~/nvim.appimage'
+# alias svi='sudo ~/nvim.appimage'
+# alias svim='sudo ~/nvim.appimage'
 alias gp='git pull'
 # alias tmux='tmux -2'
 
@@ -203,11 +204,11 @@ function del()
 }
 ~
 source "/home/jungyongchoi/mount-oeserver.sh"
-export EDITOR='~/nvim.appimage'
-export VISUAL='~/nvim.appimage'
+# export EDITOR='~/nvim.appimage'
+# export VISUAL='~/nvim.appimage'
 # export BAT_THEME="onedark"
-# export EDITOR=vi
-# export VISUAL=vi
+export EDITOR=nvim
+export VISUAL=nvim
 
 # source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
