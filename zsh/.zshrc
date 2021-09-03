@@ -12,7 +12,8 @@ autoload vnc
 bashcompinit
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jungyongchoi/.oh-my-zsh"
+# export ZSH="/home/jungyongchoi/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 # export TERM=screen-256color
 # ryan
 export TERM="xterm-256color"
