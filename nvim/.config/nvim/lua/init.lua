@@ -10,21 +10,15 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 opt.syntax = 'on'
---opt.noshowmatch = true
---
--- opt.guicursor=
 opt.relativenumber = true
 opt.hlsearch = true
 opt.hidden = true
---opt.noerrorbells = true
 opt.tabstop=4
 opt.softtabstop=4
 opt.shiftwidth=4
 opt.expandtab = true
 opt.smartindent = true
 opt.nu = true
---opt.nowrap = true
-
 opt.smartcase = true
 vim.cmd [[set nobackup]]
 vim.cmd [[set noswapfile]]
@@ -35,14 +29,9 @@ opt.incsearch = true
 opt.termguicolors = true
 opt.scrolloff=8
 opt.ignorecase = true
--- vim.cmd.backspace [[set indent,eol,start]]
--- vim.cmd [[set backspace = indent,eol,start]]
---
--- opt.t_Co=256
 vim.cmd [[set t_Co=256]]
 vim.cmd [[set nowrap]]
 vim.cmd [[set noimd]]
--- "Give more space for displaying messages.
 opt.cmdheight=2
 
 
@@ -81,7 +70,7 @@ paq {'mbbill/undotree'}
 paq {'sheerun/vim-polyglot'}
 paq {'junegunn/fzf', run = fn['fzf#install()']}
 paq {'junegunn/fzf.vim'}
-paq {'luochen1990/rainbow'}
+-- paq {'luochen1990/rainbow'}
 
 -- " Plug 'sharkdp/bat'
 
@@ -89,7 +78,7 @@ paq {'luochen1990/rainbow'}
 -- "  TOOOOOOOOOOOOO
 -- "
 -- " Theme
-paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+-- paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 paq {'folke/tokyonight.nvim'}
 paq {'ful1e5/onedark.nvim'}
 paq {'EdenEast/nightfox.nvim'}
@@ -127,7 +116,6 @@ paq {'plasticboy/vim-markdown'}
 paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
 paq {'ryanoasis/vim-devicons'}
 paq {'Yggdroot/indentLine'}
--- paq {'frazrepo/vim-rainbow'}
 
 -- "5.0
 --
@@ -220,7 +208,6 @@ vim.g.tokyonight_enable_italic = 1
 
 
 -- vim.g.material_style = 'deep ocean'
-vim.g.material_style ='Oceanic'
 -- vim.g.material_style ='Palenight'
 -- vim.g.material_style = 'darker'
 -- vim.g.material_style = 'lighter'
@@ -232,6 +219,7 @@ vim.g.material_contrast = true
 vim.g.material_borders = true
 vim.g.material_disable_background = false ]]
 
+vim.g.material_style ='Oceanic'
 require('material').setup({
 
 	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
@@ -265,6 +253,7 @@ require('material').setup({
 	custom_highlights = {} -- Overwrite highlights with your own
 })
 vim.cmd[[colorscheme material]]
+--
 --
 -- require('material').set()
 --
@@ -643,12 +632,17 @@ cfg = {
 
 require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
 
-require('kommentary.config').configure_language("cpp", {
-    single_line_comment_string = "//",
+require('kommentary.config').configure_language(
+  "default", {
     prefer_single_line_comments = true,
-    -- multi_line_comment_strings = "//",
-    -- multi_line_comment_strings = {"/*", "*/"},
-})
+  },
+  "cpp", {
+    single_line_comment_string = "//",
+  },
+  "c", {
+    single_line_comment_string = "//",
+  }
+)
 
 require'nvim-treesitter.configs'.setup {
   highlight = {

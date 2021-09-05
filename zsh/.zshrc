@@ -11,8 +11,24 @@ autoload bashcompinit
 autoload vnc
 bashcompinit
 
+# For flutter
+export PATH=$HOME/Applications/flutter/bin:$PATH
+export PATH=$HOME/Applications/android/cmdline-tools/3.0/bin:$PATH
+
+export ANDROID_SDK_ROOT=$HOME/Applications/Android
+export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools:$PATH
+export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:$PATH
+export PATH=$ANDROID_SDK_ROOT/cmdline-tools/tools/lib:$PATH
+export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH
+export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
+# Java
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+# export PATH="$PATH:`pwd`/flutter/bin"
+
 # Path to your oh-my-zsh installation.
-# export ZSH="/home/jungyongchoi/.oh-my-zsh"
 export ZSH="${HOME}/.oh-my-zsh"
 # export TERM=screen-256color
 # ryan
