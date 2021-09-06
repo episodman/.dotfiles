@@ -49,9 +49,13 @@ local function map(mode, lhs, rhs, opts)
 end
 
 cmd 'highlight ColorColumn ctermbg=0 guibg=darkgrey'
-cmd 'au ColorScheme * highlight LineNr  ctermfg=Yellow guifg=Yellow " Override LineNr'
+-- cmd 'au ColorScheme * highlight LineNr  ctermfg=Yellow guifg=Yellow " Override LineNr'
+cmd 'au ColorScheme * highlight LineNr  ctermfg=White guifg=#bd93f9" Override LineNr'
+-- cmd 'au ColorScheme * highlight LineNr  ctermfg=White guifg=#bd93f9" Override LineNr'
+
 -- cmd 'autocmd ColorScheme * highlight LineNr  ctermfg=Black guifg=Black " Override LineNr'
 cmd 'au ColorScheme * highlight CursorLineNr  ctermfg=White guifg=White " Override CursorLineNr'
+-- cmd 'au ColorScheme * highlight CursorLineNr  ctermfg=White guifg=#50fa7b" Override CursorLineNr'
 -- cmd 'autocmd ColorScheme * highlight CursorLineNr  ctermfg=Blue guifg=Blue " Override CursorLineNr'
 -- " autocmd ColorScheme * highlight Comment cterm=italic gui=italic
 cmd 'au ColorScheme * highlight Comment gui=italic'
@@ -79,6 +83,7 @@ paq {'junegunn/fzf.vim'}
 -- "
 -- " Theme
 -- paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+paq {'Mofiqul/dracula.nvim'}
 paq {'folke/tokyonight.nvim'}
 paq {'ful1e5/onedark.nvim'}
 paq {'EdenEast/nightfox.nvim'}
@@ -116,6 +121,7 @@ paq {'plasticboy/vim-markdown'}
 paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
 paq {'ryanoasis/vim-devicons'}
 paq {'Yggdroot/indentLine'}
+-- paq {"lukas-reineke/indent-blankline.nvim"}
 
 -- "5.0
 --
@@ -252,7 +258,7 @@ require('material').setup({
 
 	custom_highlights = {} -- Overwrite highlights with your own
 })
-vim.cmd[[colorscheme material]]
+-- vim.cmd[[colorscheme material]]
 --
 --
 -- require('material').set()
@@ -312,8 +318,12 @@ vim.g.nord_italic = true ]]
 -- " let g:indentLine_char = ''
 -- " let g:indentLine_first_char = ''
 -- vim.g.indentLine_char_list = [['|', '¦', '┆', '┊']]
+-- vim.g.indentLine_char_list = [['¦', '┆', ]]
 vim.g.indentLine_showFirstIndentLevel = 1
+-- vim.g.indentLine_char = 'c'
 vim.g.indentLine_defaultGroup = 'SpecialKey'
+vim.g.indentLine_concealcursor = 'inc'
+vim.g.indentLine_conceallevel = 2
 -- " let g:indentLine_setColors = 0
 -- " let g:smoothie_enabled = 1
 -- " }}
@@ -327,6 +337,7 @@ vim.g.dracula_allow_italics = 1
 vim.g.gruvbox_termcolors=256
 vim.g.gruvbox_term_italic=1
 vim.g.gruvbox_allow_italics = 1
+vim.cmd[[colorscheme dracula]]
 
 -- if executable('rg')
 --     set grepprg=rg\ --vimgrep\ --no-heading
@@ -531,6 +542,33 @@ vim.o.background = "dark" -- or "light" for light mode
 vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
+
+
+-- Indent
+-- vim.opt.listchars = {
+--     space = "⋅",
+--     eol = "↴",
+-- }
+
+-- require("indent_blankline").setup {
+--     space_char_blankline = " ",
+--     show_current_context = true,
+-- }
+
+-- vim.opt.termguicolors = true
+-- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f blend=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a blend=nocombine]]
+
+-- require("indent_blankline").setup {
+--     space_char_blankline = " ",
+--     char_highlight_list = {
+--         "IndentBlanklineIndent1",
+--         "IndentBlanklineIndent2",
+--     },
+--     -- show_trailing_blankline_indent = false,
+-- }
+
+
 
 
 -- LSP completion

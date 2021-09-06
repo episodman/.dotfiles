@@ -110,10 +110,12 @@ plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 # plugins=(git)
 autoload -U compinit && compinit
 # bindkey '\e' autosuggest-accept
+# bindkey <esc> autosuggest-accept
+# bindkey '\e' autosuggest-accept
 # bindkey '^ ' autosuggest-accept
-bindkey '^l' autosuggest-accept
 
 source $ZSH/oh-my-zsh.sh
+bindkey '^y' autosuggest-accept
 
 # User configuration
 
