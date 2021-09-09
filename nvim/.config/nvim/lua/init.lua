@@ -32,6 +32,7 @@ opt.ignorecase = true
 vim.cmd [[set t_Co=256]]
 vim.cmd [[set nowrap]]
 vim.cmd [[set noimd]]
+vim.cmd [[set cul]]
 opt.cmdheight=2
 
 
@@ -48,18 +49,15 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-cmd 'highlight ColorColumn ctermbg=0 guibg=darkgrey'
--- cmd 'au ColorScheme * highlight LineNr  ctermfg=Yellow guifg=Yellow " Override LineNr'
-cmd 'au ColorScheme * highlight LineNr  ctermfg=White guifg=#bd93f9" Override LineNr'
--- cmd 'au ColorScheme * highlight LineNr  ctermfg=White guifg=#bd93f9" Override LineNr'
+-- dracula
+-- cmd 'au ColorScheme * highlight LineNr guifg=#ff79c6' -- " Override LineNr
+-- cmd 'au ColorScheme * highlight CursorLineNr guifg=#50fa7b' --" Override CursorLineNr
+-- cmd 'au ColorScheme * highlight Comment gui=italic'
 
--- cmd 'autocmd ColorScheme * highlight LineNr  ctermfg=Black guifg=Black " Override LineNr'
-cmd 'au ColorScheme * highlight CursorLineNr  ctermfg=White guifg=White " Override CursorLineNr'
--- cmd 'au ColorScheme * highlight CursorLineNr  ctermfg=White guifg=#50fa7b" Override CursorLineNr'
--- cmd 'autocmd ColorScheme * highlight CursorLineNr  ctermfg=Blue guifg=Blue " Override CursorLineNr'
--- " autocmd ColorScheme * highlight Comment cterm=italic gui=italic
+-- gruvbox
+cmd 'au ColorScheme * highlight LineNr guifg=#d3869b' -- " Override LineNr
+cmd 'au ColorScheme * highlight CursorLineNr guifg=#fabd2f' --" Override CursorLineNr
 cmd 'au ColorScheme * highlight Comment gui=italic'
-
 
 
 
@@ -82,7 +80,7 @@ paq {'junegunn/fzf.vim'}
 -- "  TOOOOOOOOOOOOO
 -- "
 -- " Theme
--- paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 paq {'Mofiqul/dracula.nvim'}
 paq {'folke/tokyonight.nvim'}
 paq {'ful1e5/onedark.nvim'}
@@ -92,7 +90,7 @@ paq {'marko-cerovac/material.nvim'}
 paq {'ackyshake/Spacegray.vim'}
 paq {'habamax/vim-polar'}
 paq {'tomasr/molokai'}
-paq {'gruvbox-community/gruvbox'}
+-- paq {'gruvbox-community/gruvbox'}
 paq {'altercation/vim-colors-solarized'}
 paq {'NLKNguyen/papercolor-theme'}
 paq {'herrbischoff/cobalt2.vim'}
@@ -126,7 +124,8 @@ paq {'Yggdroot/indentLine'}
 -- "5.0
 --
 -- paq {'neovim/nvim-lspconfig'}
-paq {'ray-x/lsp_signature.nvim'}
+paq {'karb94/neoscroll.nvim'}
+-- paq {'ray-x/lsp_signature.nvim'}
 paq {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']}
 paq {'nvim-lua/completion-nvim'}
 paq {'nvim-lua/popup.nvim'}
@@ -139,16 +138,7 @@ g['deoplete#enable_at_startup'] = 1  -- e
 
 
 vim.g.rainbow_active = 0
-
 vim.g.coc_node_path = '/usr/bin/nodejs'
--- " let g:gruvbox_contrast_dark = 'soft'
-vim.g.gruvbox_contrast_dark = 'hard'
--- " let g:gruvbox_contrast_light= 'hard'
--- if exists('+termguicolors')
---     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
---     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
--- endif
--- " let g:gruvbox_invert_selection='0'
 
 -- The Greatest plugin of all time.  I am not bias
 vim.g.vim_be_good_floating = 1
@@ -192,9 +182,18 @@ cmd 'au FileType python noremap <buffer> <F8> :call Autopep8()<CR>'
 -- " --- netrw
 vim.g.netrw_liststyle=3
 vim.g.netrw_altv = 1
--- " let g:tokyonight_style = 'storm' " available: night, storm
-vim.g.tokyonight_style = 'night' -- " available: night, storm
-vim.g.tokyonight_enable_italic = 1
+-- Example config in Lua
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Load the colorscheme
+-- vim.cmd[[colorscheme tokyonight]]
+
+
 
 -- vim.g.onedark_style = 'darker'
 -- vim.g.onedark_transparent_background = true
@@ -264,43 +263,43 @@ require('material').setup({
 -- require('material').set()
 --
 
--- local nightfox = require('nightfox').load()
--- local nightfox = require('nightfox')
--- nightfox.setup(
--- 	{
--- 	  fox = "nightfox", -- change the colorscheme to use nordfox
--- 	  styles = {
--- 		strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
--- 		comments = "italic", -- change style of comments to be italic
--- 		keywords = "italic", -- change style of keywords to be bold
--- 		variables = "italic", -- change style of keywords to be bold
--- 		--functions = "italic,bold" -- styles can be a comma separated list
--- 	  },
--- 	  colors = {
--- 		red = "#FF000", -- Override the red color for MAX POWER
--- 		bg_alt = "#000000",
--- 	  },
--- 	  hlgroup = {
--- 		TSPunctDelimiter = { fg = "${red}" }, -- Override a highlight group with the color red
--- 		LspCodeLens = { bg = "#000000" },
--- 	  }
--- 	}
--- --	-- {
--- --	--   fox = "nightfox", -- Which fox style should be applied
--- --	--   transparent = false, -- Disable setting the background color
--- --	--   terminal_colors = true, -- Configure the colors used when opening :terminal
--- --	--   styles = {
--- --	-- 	comments = "italic", -- Style that is applied to comments: see `highlight-args` for options
--- --	-- 	functions = "NONE", -- Style that is applied to functions: see `highlight-args` for options
--- --	-- 	keywords = "italic", -- Style that is applied to keywords: see `highlight-args` for options
--- --	-- 	strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
--- --	-- 	variables = "NONE", -- Style that is applied to variables: see `highlight-args` for options
--- --	--   },
--- --	--   colors = {}, -- Override default colors
--- --	--   hlgroups = {}, -- Override highlight groups
--- --	-- }
--- )
--- nightfox.load()
+local nightfox = require('nightfox').load()
+local nightfox = require('nightfox')
+nightfox.setup(
+	{
+	  fox = "nightfox", -- change the colorscheme to use nordfox
+	  styles = {
+		strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
+		comments = "italic", -- change style of comments to be italic
+		keywords = "italic", -- change style of keywords to be bold
+		variables = "italic", -- change style of keywords to be bold
+		--functions = "italic,bold" -- styles can be a comma separated list
+	  },
+	  colors = {
+		red = "#FF000", -- Override the red color for MAX POWER
+		bg_alt = "#000000",
+	  },
+	  hlgroup = {
+		TSPunctDelimiter = { fg = "${red}" }, -- Override a highlight group with the color red
+		LspCodeLens = { bg = "#000000" },
+	  }
+	}
+--	-- {
+--	--   fox = "nightfox", -- Which fox style should be applied
+--	--   transparent = false, -- Disable setting the background color
+--	--   terminal_colors = true, -- Configure the colors used when opening :terminal
+--	--   styles = {
+--	-- 	comments = "italic", -- Style that is applied to comments: see `highlight-args` for options
+--	-- 	functions = "NONE", -- Style that is applied to functions: see `highlight-args` for options
+--	-- 	keywords = "italic", -- Style that is applied to keywords: see `highlight-args` for options
+--	-- 	strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
+--	-- 	variables = "NONE", -- Style that is applied to variables: see `highlight-args` for options
+--	--   },
+--	--   colors = {}, -- Override default colors
+--	--   hlgroups = {}, -- Override highlight groups
+--	-- }
+)
+nightfox.load()
 
 -- Example config in lua
 --[[ vim.g.nord_contrast = true
@@ -333,11 +332,14 @@ vim.g.smoothie_enabled = 0
 opt.background='dark'
 vim.g.dracula_termcolors=256
 vim.g.dracula_term_italic=1
+vim.g.dracula_italic=1
+
 vim.g.dracula_allow_italics = 1
-vim.g.gruvbox_termcolors=256
-vim.g.gruvbox_term_italic=1
-vim.g.gruvbox_allow_italics = 1
-vim.cmd[[colorscheme dracula]]
+vim.g.gruvbox_italic = 1
+vim.g.gruvbox_contrast_dark = 'hard'
+-- vim.cmd[[colorscheme gruvbox]]
+-- vim.g.gruvbox_allow_italics = 1
+-- vim.cmd[[colorscheme dracula]]
 
 -- if executable('rg')
 --     set grepprg=rg\ --vimgrep\ --no-heading
@@ -630,45 +632,48 @@ vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 --  }
 --end
 -- LSP signature
-cfg = {
-  bind = true, -- This is mandatory, otherwise border config won't get registered.
-               -- If you want to hook lspsaga or other signature handler, pls set to false
-  doc_lines = 2, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
-                 -- set to 0 if you DO NOT want any API comments be shown
-                 -- This setting only take effect in insert mode, it does not affect signature help in normal
-                 -- mode, 10 by default
+-- cfg = {
+--   bind = true, -- This is mandatory, otherwise border config won't get registered.
+--                -- If you want to hook lspsaga or other signature handler, pls set to false
+--   doc_lines = 2, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+--                  -- set to 0 if you DO NOT want any API comments be shown
+--                  -- This setting only take effect in insert mode, it does not affect signature help in normal
+--                  -- mode, 10 by default
 
-  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
-  fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
-  hint_enable = true, -- virtual hint enable
-  hint_prefix = "🐼 ",  -- Panda for parameter
-  hint_scheme = "String",
-  use_lspsaga = false,  -- set to true if you want to use lspsaga popup
-  hi_parameter = "Search", -- how your parameter will be highlight
-  max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
-                   -- to view the hiding contents
-  max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
-  transpancy = 10, -- set this value if you want the floating windows to be transpant (100 fully transpant), nil to disable(default)
-  handler_opts = {
-    border = "shadow"   -- double, single, shadow, none
-  },
+--   floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+--   fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+--   hint_enable = true, -- virtual hint enable
+--   hint_prefix = "🐼 ",  -- Panda for parameter
+--   hint_scheme = "String",
+--   use_lspsaga = false,  -- set to true if you want to use lspsaga popup
+--   hi_parameter = "Search", -- how your parameter will be highlight
+--   max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+--                    -- to view the hiding contents
+--   max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+--   transpancy = 10, -- set this value if you want the floating windows to be transpant (100 fully transpant), nil to disable(default)
+--   handler_opts = {
+--     border = "shadow"   -- double, single, shadow, none
+--   },
 
-  trigger_on_newline = false, -- set to true if you need multiple line parameter, sometime show signature on new line can be confusing, set it to false for #58
-  extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
-  -- deprecate !!
-  -- decorator = {"`", "`"}  -- this is no longer needed as nvim give me a handler and it allow me to highlight active parameter in floating_window
-  zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
-  debug = false, -- set to true to enable debug logging
-  log_path = "debug_log_file_path", -- debug log path
+--   trigger_on_newline = false, -- set to true if you need multiple line parameter, sometime show signature on new line can be confusing, set it to false for #58
+--   extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+--   -- deprecate !!
+--   -- decorator = {"`", "`"}  -- this is no longer needed as nvim give me a handler and it allow me to highlight active parameter in floating_window
+--   zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
+--   debug = false, -- set to true to enable debug logging
+--   log_path = "debug_log_file_path", -- debug log path
 
-  padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+--   padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
 
-  shadow_blend = 36, -- if you using shadow as border use this set the opacity
-  shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
-  toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
-}
+--   shadow_blend = 36, -- if you using shadow as border use this set the opacity
+--   shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+--   toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+-- }
 
-require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
+-- require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
+
+
+require('neoscroll').setup()
 
 require('kommentary.config').configure_language(
   "default", {

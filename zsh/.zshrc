@@ -42,9 +42,9 @@ alias tmux="tmux -2"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -196,6 +196,22 @@ function branch()
     git branch -a | grep $1;
 }
 
+# function extract
+# {
+  # echo $1
+  # local filename dirname
+  # local filename = $1
+  # echo $filename
+  # echo "$filename"
+  # local dirname = $(echo $filename | cut -d'.' -f 1)
+  # echo 'dirname: "$(dirname)"'
+  # mkdir "./$dirname"
+  # tar -xzvf ./"$filename" -C ./"$dirname"
+  # cd ./"$dirname"
+# }
+
+
+
 # function gc()
 # {
 # 	git checkout $1;
@@ -233,4 +249,4 @@ export VISUAL=nvim
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
