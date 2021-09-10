@@ -54,31 +54,13 @@ end
 -- cmd 'au ColorScheme * highlight CursorLineNr guifg=#50fa7b' --" Override CursorLineNr
 -- cmd 'au ColorScheme * highlight Comment gui=italic'
 
--- gruvbox
+-- gruvbox & nightfox
 cmd 'au ColorScheme * highlight LineNr guifg=#d3869b' -- " Override LineNr
 cmd 'au ColorScheme * highlight CursorLineNr guifg=#fabd2f' --" Override CursorLineNr
 cmd 'au ColorScheme * highlight Comment gui=italic'
 
-
-
 cmd 'packadd paq-nvim'
 local paq = require('paq-nvim').paq
-paq {'junegunn/vim-easy-align'}
-paq {'neoclide/coc.nvim', branch = 'release'}
-paq {'tweekmonster/gofmt.vim'}
-paq {'tpope/vim-fugitive'}
-paq {'vim-utils/vim-man'}
-paq {'mbbill/undotree'}
-paq {'sheerun/vim-polyglot'}
-paq {'junegunn/fzf', run = fn['fzf#install()']}
-paq {'junegunn/fzf.vim'}
--- paq {'luochen1990/rainbow'}
-
--- " Plug 'sharkdp/bat'
-
--- "  I AM SO SORRY FOR DOING COLOR SCHEMES IN MY VIMRC, BUT I HAVE
--- "  TOOOOOOOOOOOOO
--- "
 -- " Theme
 paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 paq {'Mofiqul/dracula.nvim'}
@@ -90,14 +72,13 @@ paq {'marko-cerovac/material.nvim'}
 paq {'ackyshake/Spacegray.vim'}
 paq {'habamax/vim-polar'}
 paq {'tomasr/molokai'}
--- paq {'gruvbox-community/gruvbox'}
 paq {'altercation/vim-colors-solarized'}
 paq {'NLKNguyen/papercolor-theme'}
 paq {'herrbischoff/cobalt2.vim'}
+
+-- utils
 paq {'psliwka/vim-smoothie'}
-paq {'vim-airline/vim-airline'}
 paq {'flazz/vim-colorschemes'}
--- paq {'/home/mpaulson/personal/vim-be-good'}
 paq {'Vimjas/vim-python-pep8-indent'}
 paq {'jiangmiao/auto-pairs'}
 paq {'tell-k/vim-autopep8'}
@@ -111,19 +92,25 @@ paq {'rakr/vim-one'}
 paq {'iamcco/markdown-preview.vim'}
 paq {'iamcco/mathjax-support-for-mkdp'}
 paq {'justinmk/vim-sneak'}
--- paq {'tpope/vim-commentary'}
--- paq {'terrortylor/nvim-comment'}
 paq {'b3nj5m1n/kommentary'}
 paq {'godlygeek/tabular'}
 paq {'plasticboy/vim-markdown'}
 paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
 paq {'ryanoasis/vim-devicons'}
 paq {'Yggdroot/indentLine'}
--- paq {"lukas-reineke/indent-blankline.nvim"}
+paq {'junegunn/vim-easy-align'}
+paq {'neoclide/coc.nvim', branch = 'release'}
+paq {'tweekmonster/gofmt.vim'}
+paq {'tpope/vim-fugitive'}
+paq {'vim-utils/vim-man'}
+paq {'mbbill/undotree'}
+paq {'sheerun/vim-polyglot'}
+paq {'junegunn/fzf', run = fn['fzf#install()']}
+paq {'junegunn/fzf.vim'}
 
 -- "5.0
---
 -- paq {'neovim/nvim-lspconfig'}
+paq {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
 paq {'karb94/neoscroll.nvim'}
 -- paq {'ray-x/lsp_signature.nvim'}
 paq {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']}
@@ -133,12 +120,11 @@ paq {'nvim-lua/plenary.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
 paq {'nvim-telescope/telescope-fzy-native.nvim'}
 paq {'nvim-treesitter/playground'}
-paq {'glepnir/galaxyline.nvim'}
 g['deoplete#enable_at_startup'] = 1  -- e
 
 
 vim.g.rainbow_active = 0
-vim.g.coc_node_path = '/usr/bin/nodejs'
+vim.g.coc_node_path = '/usr/bin/node'
 
 -- The Greatest plugin of all time.  I am not bias
 vim.g.vim_be_good_floating = 1
@@ -174,11 +160,6 @@ vim.g.autopep8_max_line_length=79
 
 cmd 'au FileType python noremap <buffer> <F8> :call Autopep8()<CR>'
 
--- "  --- bracket rainbow
--- vim.g.rainbow_ = 1
-
-
-
 -- " --- netrw
 vim.g.netrw_liststyle=3
 vim.g.netrw_altv = 1
@@ -195,79 +176,11 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 
 
--- vim.g.onedark_style = 'darker'
--- vim.g.onedark_transparent_background = true
--- vim.g.onedark_italic_comments = true
--- vim.g.onedark_italic_keywords = true
--- vim.g.onedark_italic_functions = true
--- vim.g.onedark_italic_variables = false
--- require('onedark').setup()
-
---require("onedark").setup({
---  commentStyle = "italic",
---  keywordStyle = "italic",
---  functionStyle = "italic",
---  variableStyle = "italic"
---  -- ... your onedark config
---})
-
-
--- vim.g.material_style = 'deep ocean'
--- vim.g.material_style ='Palenight'
--- vim.g.material_style = 'darker'
--- vim.g.material_style = 'lighter'
---[[ vim.g.material_italic_comments = true
-vim.g.material_italic_keywords = true
-vim.g.material_italic_functions = true
-vim.g.material_italic_variables = false
-vim.g.material_contrast = true
-vim.g.material_borders = true
-vim.g.material_disable_background = false ]]
-
-vim.g.material_style ='Oceanic'
-require('material').setup({
-
-	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
-	borders = false, -- Enable borders between verticaly split windows
-
-	italics = {
-		comments = true, -- Enable italic comments
-		keywords = true, -- Enable italic keywords
-		functions = true, -- Enable italic functions
-		strings = false, -- Enable italic strings
-		variables = false -- Enable italic variables
-	},
-
-	contrast_windows = { -- Specify which windows get the contrasted (darker) background
-		"terminal", -- Darker terminal background
-		"packer", -- Darker packer background
-		"qf" -- Darker qf list background
-	},
-
-	text_contrast = {
-		lighter = false, -- Enable higher contrast text for lighter style
-		darker = false -- Enable higher contrast text for darker style
-	},
-
-	disable = {
-		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
-		term_colors = false, -- Prevent the theme from setting terminal colors
-		eob_lines = false -- Hide the end-of-buffer lines
-	},
-
-	custom_highlights = {} -- Overwrite highlights with your own
-})
--- vim.cmd[[colorscheme material]]
---
---
--- require('material').set()
---
-
 local nightfox = require('nightfox').load()
 local nightfox = require('nightfox')
 nightfox.setup(
 	{
-	  fox = "nightfox", -- change the colorscheme to use nordfox
+	  fox = "nordfox", -- change the colorscheme to use nordfox
 	  styles = {
 		strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
 		comments = "italic", -- change style of comments to be italic
@@ -284,31 +197,19 @@ nightfox.setup(
 		LspCodeLens = { bg = "#000000" },
 	  }
 	}
---	-- {
---	--   fox = "nightfox", -- Which fox style should be applied
---	--   transparent = false, -- Disable setting the background color
---	--   terminal_colors = true, -- Configure the colors used when opening :terminal
---	--   styles = {
---	-- 	comments = "italic", -- Style that is applied to comments: see `highlight-args` for options
---	-- 	functions = "NONE", -- Style that is applied to functions: see `highlight-args` for options
---	-- 	keywords = "italic", -- Style that is applied to keywords: see `highlight-args` for options
---	-- 	strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
---	-- 	variables = "NONE", -- Style that is applied to variables: see `highlight-args` for options
---	--   },
---	--   colors = {}, -- Override default colors
---	--   hlgroups = {}, -- Override highlight groups
---	-- }
 )
 nightfox.load()
 
--- Example config in lua
---[[ vim.g.nord_contrast = true
-vim.g.nord_borders = false
-vim.g.nord_disable_background = false
-vim.g.nord_italic = true ]]
+require('lualine').setup {
+  options = {
+    -- ... your lualine config
+    theme = "nightfox"
+  },
+  extensions = {'quickfix'}
+}
 
--- Load the colorscheme
--- require('nord').set()
+
+-- Example config in lua
 
 -- cmd 'colorscheme tokyonight'
 -- "set termguicolors     " enable true colors support
