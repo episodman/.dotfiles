@@ -80,7 +80,8 @@ paq {'herrbischoff/cobalt2.vim'}
 paq {'psliwka/vim-smoothie'}
 paq {'flazz/vim-colorschemes'}
 paq {'Vimjas/vim-python-pep8-indent'}
-paq {'jiangmiao/auto-pairs'}
+-- paq {'jiangmiao/auto-pairs'}
+paq {'windwp/nvim-autopairs'}
 paq {'tell-k/vim-autopep8'}
 paq {'dart-lang/dart-vim-plugin'}
 paq {'preservim/nerdcommenter'}
@@ -99,7 +100,7 @@ paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
 paq {'ryanoasis/vim-devicons'}
 paq {'Yggdroot/indentLine'}
 paq {'junegunn/vim-easy-align'}
-paq {'neoclide/coc.nvim', branch = 'release'}
+-- paq {'neoclide/coc.nvim', branch = 'release'}
 paq {'tweekmonster/gofmt.vim'}
 paq {'tpope/vim-fugitive'}
 paq {'vim-utils/vim-man'}
@@ -107,14 +108,16 @@ paq {'mbbill/undotree'}
 paq {'sheerun/vim-polyglot'}
 paq {'junegunn/fzf', run = fn['fzf#install()']}
 paq {'junegunn/fzf.vim'}
-
+-- note taking
+-- paq {'oberblastmeister/neuron.nvim'}
 -- "5.0
--- paq {'neovim/nvim-lspconfig'}
+paq {'neovim/nvim-lspconfig'}
+paq {'hrsh7th/nvim-compe'}
 paq {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
 paq {'karb94/neoscroll.nvim'}
--- paq {'ray-x/lsp_signature.nvim'}
+paq {'ray-x/lsp_signature.nvim'}
 paq {'nvim-treesitter/nvim-treesitter', run = fn['TSUpdate']}
-paq {'nvim-lua/completion-nvim'}
+-- paq {'nvim-lua/completion-nvim'}
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-lua/plenary.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
@@ -129,7 +132,10 @@ vim.g.coc_node_path = '/usr/bin/node'
 -- The Greatest plugin of all time.  I am not bias
 vim.g.vim_be_good_floating = 1
 -- auto-pair
-vim.g.AutoPairsShortcutToggle='<M-t>'
+-- vim.g.AutoPairsShortcutToggle='<M-t>'
+require('nvim-autopairs').setup({
+  disable_filetype = { "TelescopePrompt" , "vim" },
+})
 
 --- ctrlp
 cmd 'set wildignore+=*/tmp/*,*.so,*\\tmp\\*,*.swp,*.zip,*.exe'
@@ -180,7 +186,9 @@ local nightfox = require('nightfox').load()
 local nightfox = require('nightfox')
 nightfox.setup(
 	{
-	  fox = "nordfox", -- change the colorscheme to use nordfox
+	  -- fox = "palefox", -- change the colorscheme to use nordfox
+	  fox = "nightfox", -- change the colorscheme to use nordfox
+	  -- fox = "nordfox", -- change the colorscheme to use nordfox
 	  styles = {
 		strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
 		comments = "italic", -- change style of comments to be italic
@@ -204,6 +212,7 @@ require('lualine').setup {
   options = {
     -- ... your lualine config
     theme = "nightfox"
+    -- theme = "dracula"
   },
   extensions = {'quickfix'}
 }
@@ -256,6 +265,17 @@ vim.g.netrw_browse_split = 2
 vim.g.vrfr_rg = 'true'
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+-- note taking
+-- require'neuron'.setup {
+--     virtual_titles = true,
+--     mappings = true,
+--     run = nil, -- function to run when in neuron dir
+--     neuron_dir = "~/neuron", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
+--     leader = "gz", -- the leader key to for all mappings, remember with 'go zettel'
+-- }
+
+
 -- " FZF
 vim.g.fzf_tags_command = 'ctags -R'
 -- " Border color
@@ -369,16 +389,16 @@ map('i', 'ii', '<Esc>', {noremap = true})
 map('i', '<C-space>', 'coc#refresh()', {expr = true})
 
 -- " GoTo code navigation.
-map('n', '<leader>gd', '<Plug>(coc-definition)')
-map('n', '<leader>gy', '<Plug>(coc-type-definition)')
-map('n', '<leader>gi', '<Plug>(coc-implementation)')
-map('n', '<leader>gr', '<Plug>(coc-references)')
-map('n', '<leader>rr', '<Plug>(coc-rename)')
-map('n', '<leader>g[', '<Plug>(coc-diagnostic-prev)')
-map('n', '<leader>g]', '<Plug>(coc-diagnostic-next)')
-map('n', '<silent> <leader>gp', '<Plug>(coc-diagnostic-prev-error)')
-map('n', '<silent> <leader>gn', '<Plug>(coc-diagnostic-next-error)')
-map('n', '<leader>cr', ':CocRestart', {noremap = true})
+-- map('n', '<leader>gd', '<Plug>(coc-definition)')
+-- map('n', '<leader>gy', '<Plug>(coc-type-definition)')
+-- map('n', '<leader>gi', '<Plug>(coc-implementation)')
+-- map('n', '<leader>gr', '<Plug>(coc-references)')
+-- map('n', '<leader>rr', '<Plug>(coc-rename)')
+-- map('n', '<leader>g[', '<Plug>(coc-diagnostic-prev)')
+-- map('n', '<leader>g]', '<Plug>(coc-diagnostic-next)')
+-- map('n', '<silent> <leader>gp', '<Plug>(coc-diagnostic-prev-error)')
+-- map('n', '<silent> <leader>gn', '<Plug>(coc-diagnostic-next-error)')
+-- map('n', '<leader>cr', ':CocRestart', {noremap = true})
 
 
 -- " Sweet Sweet FuGITive
@@ -416,7 +436,7 @@ cmd 'au BufWritePost plugins.lua PackerCompile'
 -- " Use completion-nvim in every buffer
 -- TODO:
 -- cmd 'au BufEnter * lua require"completion".on_attach()'
-vim.g.completion_enable_auto_popup = 1
+-- vim.g.completion_enable_auto_popup = 1
 -- " Use <Tab> and <S-Tab> to navigate through popup menu
 -- " Set completeopt to have a better completion experience
 opt.completeopt="menuone,noinsert,noselect"
@@ -447,132 +467,188 @@ vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 
 
--- Indent
--- vim.opt.listchars = {
---     space = "⋅",
---     eol = "↴",
--- }
+require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
 
--- require("indent_blankline").setup {
---     space_char_blankline = " ",
---     show_current_context = true,
--- }
+-- nvim-compe
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", { expr = true })
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
--- vim.opt.termguicolors = true
--- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f blend=nocombine]]
--- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a blend=nocombine]]
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
 
--- require("indent_blankline").setup {
---     space_char_blankline = " ",
---     char_highlight_list = {
---         "IndentBlanklineIndent1",
---         "IndentBlanklineIndent2",
---     },
---     -- show_trailing_blankline_indent = false,
--- }
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn['vsnip#available'](1) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
 
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+require("nvim-autopairs.completion.compe").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
+  auto_select = false,  -- auto select first item
+  map_char = { -- modifies the function or method delimiter by filetypes
+    all = '(',
+    tex = '{'
+  }
+})
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  resolve_timeout = 800;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = {
+    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    min_width = 60,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+  };
 
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+    luasnip = true;
+  };
+}
 
+-- LSP config
+local nvim_lsp = require('lspconfig')
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
--- LSP completion
--- cmd [[autocmd BufEnter * lua require'completion'.on_attach()]]
+ -- Enable completion triggered by <c-x><c-o>
+ buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
---[[ lspconfig = require'lspconfig'
---completion_callback = require'completion'.on_attach
---lspconfig.pyls.setup{on_attach=completion_callback} ]]
--- lspconfig.tsserver.setup{on_attach=completion_callback}
--- lspconfig.ccls.setup{on_attach=completion_callback}
+ -- Mappings.
+ local opts = { noremap=true, silent=true }
+ -- See `:help vim.lsp.*` for documentation on any of the below functions
+ buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+ buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+ buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+ buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+ buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+ buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+ buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+ buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+ buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+ buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+ buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+ buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+ buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+ buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+ buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+ buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+ buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'ccls', 'clangd', 'jsonls'}
+for _, lsp in ipairs(servers) do
+ nvim_lsp[lsp].setup {
+   on_attach = on_attach,
+   flags = {
+     debounce_text_changes = 150,
+   }
+ }
+end
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    }
+}
 --
--- require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
--- require'lspconfig'.pyls.setup {on_attach=require'completion'.on_attach}
--- require'lspconfig'.ccls.setup{on_attach=require'completion'.on_attach}
+-- require'lspconfig'.pyright.setup{}
+-- require'lspconfig'.clangd.setup{}
 --
--- LSP
---local nvim_lsp = require('lspconfig')
----- Use an on_attach function to only map the following keys
----- after the language server attaches to the current buffer
---local on_attach = function(client, bufnr)
---  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
---  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
---
---  -- Enable completion triggered by <c-x><c-o>
---  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
---
---  -- Mappings.
---  local opts = { noremap=true, silent=true }
---
---  -- See `:help vim.lsp.*` for documentation on any of the below functions
---  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
---  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
---  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
---  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
---  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
---  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
---  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
---  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
---  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
---  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
---  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
---  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
---  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
---  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
---  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
---end
---
----- Use a loop to conveniently call 'setup' on multiple servers and
----- map buffer local keybindings when the language server attaches
---local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'ccls' }
---for _, lsp in ipairs(servers) do
---  nvim_lsp[lsp].setup {
---    on_attach = on_attach,
---    flags = {
---      debounce_text_changes = 150,
---    }
---  }
---end
 -- LSP signature
--- cfg = {
---   bind = true, -- This is mandatory, otherwise border config won't get registered.
---                -- If you want to hook lspsaga or other signature handler, pls set to false
---   doc_lines = 2, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
---                  -- set to 0 if you DO NOT want any API comments be shown
---                  -- This setting only take effect in insert mode, it does not affect signature help in normal
---                  -- mode, 10 by default
+cfg = {
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+               -- If you want to hook lspsaga or other signature handler, pls set to false
+  doc_lines = 2, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+                 -- set to 0 if you DO NOT want any API comments be shown
+                 -- This setting only take effect in insert mode, it does not affect signature help in normal
+                 -- mode, 10 by default
 
---   floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
---   fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
---   hint_enable = true, -- virtual hint enable
---   hint_prefix = "🐼 ",  -- Panda for parameter
---   hint_scheme = "String",
---   use_lspsaga = false,  -- set to true if you want to use lspsaga popup
---   hi_parameter = "Search", -- how your parameter will be highlight
---   max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
---                    -- to view the hiding contents
---   max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
---   transpancy = 10, -- set this value if you want the floating windows to be transpant (100 fully transpant), nil to disable(default)
---   handler_opts = {
---     border = "shadow"   -- double, single, shadow, none
---   },
+  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+  fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+  hint_enable = true, -- virtual hint enable
+  hint_prefix = "🐼 ",  -- Panda for parameter
+  hint_scheme = "String",
+  use_lspsaga = false,  -- set to true if you want to use lspsaga popup
+  hi_parameter = "Search", -- how your parameter will be highlight
+  max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+                   -- to view the hiding contents
+  max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+  transpancy = 10, -- set this value if you want the floating windows to be transpant (100 fully transpant), nil to disable(default)
+  handler_opts = {
+    border = "shadow"   -- double, single, shadow, none
+  },
 
---   trigger_on_newline = false, -- set to true if you need multiple line parameter, sometime show signature on new line can be confusing, set it to false for #58
---   extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
---   -- deprecate !!
---   -- decorator = {"`", "`"}  -- this is no longer needed as nvim give me a handler and it allow me to highlight active parameter in floating_window
---   zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
---   debug = false, -- set to true to enable debug logging
---   log_path = "debug_log_file_path", -- debug log path
+  trigger_on_newline = false, -- set to true if you need multiple line parameter, sometime show signature on new line can be confusing, set it to false for #58
+  extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+  -- deprecate !!
+  -- decorator = {"`", "`"}  -- this is no longer needed as nvim give me a handler and it allow me to highlight active parameter in floating_window
+  zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
+  debug = false, -- set to true to enable debug logging
+  log_path = "debug_log_file_path", -- debug log path
 
---   padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
+  padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
 
---   shadow_blend = 36, -- if you using shadow as border use this set the opacity
---   shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
---   toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
--- }
+  shadow_blend = 36, -- if you using shadow as border use this set the opacity
+  shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
+  toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+}
 
--- require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
-
+require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
 
 require('neoscroll').setup()
 

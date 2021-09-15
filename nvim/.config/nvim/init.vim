@@ -1,5 +1,6 @@
 lua <<EOF
 require('init')
+require('lua-ls')
 EOF
 
 fun! TrimWhitespace()
