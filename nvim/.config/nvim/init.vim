@@ -27,3 +27,5 @@ if !has('unix')
 			  \   'cache_enabled': 0,
 			  \ }
 endif
+
+let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
