@@ -29,3 +29,7 @@ if !has('unix')
 endif
 
 let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
+
+" lspsaga
+" rename
+nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>

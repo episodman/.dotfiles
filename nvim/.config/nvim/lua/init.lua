@@ -42,6 +42,7 @@ opt.updatetime=50
 opt.colorcolumn='80'
 -- " Don't pass messages to |ins-completion-menu|.
 vim.cmd [[set shortmess+=c]]
+-- vim.cmd("autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()")
 
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
@@ -62,7 +63,8 @@ cmd 'au ColorScheme * highlight Comment gui=italic'
 cmd 'packadd paq-nvim'
 local paq = require('paq-nvim').paq
 -- " Theme
-paq {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+paq { 'rktjmp/lush.nvim' }
+paq {'ellisonleao/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 paq {'Mofiqul/dracula.nvim'}
 paq {'folke/tokyonight.nvim'}
 paq {'ful1e5/onedark.nvim'}
@@ -75,6 +77,7 @@ paq {'tomasr/molokai'}
 paq {'altercation/vim-colors-solarized'}
 paq {'NLKNguyen/papercolor-theme'}
 paq {'herrbischoff/cobalt2.vim'}
+-- paq {'norcalli/nvim-colorizer.lua'}
 
 -- utils
 paq {'psliwka/vim-smoothie'}
@@ -100,7 +103,7 @@ paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
 paq {'ryanoasis/vim-devicons'}
 paq {'Yggdroot/indentLine'}
 paq {'junegunn/vim-easy-align'}
--- paq {'neoclide/coc.nvim', branch = 'release'}
+paq {'neoclide/coc.nvim', branch = 'release'}
 paq {'tweekmonster/gofmt.vim'}
 paq {'tpope/vim-fugitive'}
 paq {'vim-utils/vim-man'}
@@ -123,6 +126,9 @@ paq {'hrsh7th/vim-vsnip'}
 paq {'hrsh7th/cmp-buffer'}
 paq {'saadparwaiz1/cmp_luasnip'}
 paq {'L3MON4D3/LuaSnip'}
+
+-- rename
+-- paq {'glepnir/lspsaga.nvim'}
 
 paq {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
 paq {'karb94/neoscroll.nvim'}
@@ -182,16 +188,13 @@ vim.g.netrw_liststyle=3
 vim.g.netrw_altv = 1
 -- Example config in Lua
 vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_functions = true
+-- vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
--- Load the colorscheme
 -- vim.cmd[[colorscheme tokyonight]]
-
-
 
 local nightfox = require('nightfox').load()
 local nightfox = require('nightfox')
@@ -201,10 +204,10 @@ nightfox.setup(
 	  fox = "nightfox", -- change the colorscheme to use nordfox
 	  -- fox = "nordfox", -- change the colorscheme to use nordfox
 	  styles = {
-		strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
+		-- strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
 		comments = "italic", -- change style of comments to be italic
 		keywords = "italic", -- change style of keywords to be bold
-		variables = "italic", -- change style of keywords to be bold
+		-- variables = "italic", -- change style of keywords to be bold
 		--functions = "italic,bold" -- styles can be a comma separated list
 	  },
 	  colors = {
@@ -218,12 +221,20 @@ nightfox.setup(
 	}
 )
 nightfox.load()
+--
+-- g:lightline = {'colorscheme': 'tokyonight'}
+--
+--
+--
 
 require('lualine').setup {
   options = {
     -- ... your lualine config
-    theme = "nightfox"
+    -- theme = "nightfox"
+    -- theme = "tokyonight"
     -- theme = "dracula"
+    theme = 'dracula-nvim'
+    -- theme = "gruvbox"
   },
   extensions = {'quickfix'}
 }
@@ -231,7 +242,6 @@ require('lualine').setup {
 
 -- Example config in lua
 
--- cmd 'colorscheme tokyonight'
 -- "set termguicolors     " enable true colors support
 -- "let ayucolor="dark" " for mirage version of theme
 -- " IndentLine {{
@@ -257,10 +267,16 @@ vim.g.dracula_italic=1
 
 vim.g.dracula_allow_italics = 1
 vim.g.gruvbox_italic = 1
-vim.g.gruvbox_contrast_dark = 'hard'
+-- vim.g.gruvbox_contrast_dark = 'hard'
 -- vim.cmd[[colorscheme gruvbox]]
 -- vim.g.gruvbox_allow_italics = 1
 -- vim.cmd[[colorscheme dracula]]
+
+-- local nightfox = require('nightfox').load()
+-- local nightfox = require('nightfox')
+-- nightfox.setup(
+-- 	{
+-- 	  -- fox = "palefox", -- change the
 
 -- if executable('rg')
 --     set grepprg=rg\ --vimgrep\ --no-heading
@@ -477,8 +493,14 @@ vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
 
-
+-- treesitter
 require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+-- colorizer
+-- require'colorizer'.setup()
+
+-- lsp saga
+-- local saga = require 'lspsaga'
+-- saga.init_lsp_saga()
 
 -- Auto compeletion
 -- Set completeopt to have a better completion experience
@@ -578,15 +600,15 @@ for _, lsp in ipairs(servers) do
    }
  }
 end
-require'lspconfig'.jsonls.setup {
-    commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
-    }
-}
+-- require'lspconfig'.jsonls.setup {
+--     commands = {
+--       Format = {
+--         function()
+--           vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+--         end
+--       }
+--     }
+-- }
 --
 -- require'lspconfig'.pyright.setup{}
 -- require'lspconfig'.clangd.setup{}
@@ -605,7 +627,7 @@ cfg = {
   hint_enable = true, -- virtual hint enable
   hint_prefix = "🐼 ",  -- Panda for parameter
   hint_scheme = "String",
-  use_lspsaga = false,  -- set to true if you want to use lspsaga popup
+  use_lspsaga = true,  -- set to true if you want to use lspsaga popup
   hi_parameter = "Search", -- how your parameter will be highlight
   max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
                    -- to view the hiding contents
@@ -661,7 +683,7 @@ require'nvim-treesitter.configs'.setup {
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
-    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    -- file_sorter = require('telescope.sorters').get_fzy_sorter,
     prompt_prefix = '> ',
     --prompt_prefix = '🔍 ',
     color_devicons = true,
