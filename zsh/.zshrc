@@ -42,9 +42,9 @@ alias tmux="tmux -2"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -116,6 +116,7 @@ autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 bindkey '^y' autosuggest-accept
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 
 # User configuration
 
@@ -144,16 +145,25 @@ bindkey '^y' autosuggest-accept
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias ls="ls --color=auto"
+alias builddir="/home/jungyongchoi/build/o22/build-starfish"
+alias gtestbuild="/home/jungyongchoi/build/gtest_build/build-starfish"
 alias buildamp='bitbake lib32-audio-adaptation-layer-amplifier -C configure'
 alias builddelay='bitbake lib32-audio-adaptation-layer-delay-gain -C configure'
 alias buildse='bitbake lib32-audio-adaptation-layer-soundengine -C configure'
-alias audiodcode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiod-pro'
-alias pulsecode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/pulseaudio-webos'
-alias aodcode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiooutputd-pro'
-alias dockeraudiod='cd /home/jungyongchoi/oe-server2/work/audiod-pro'
-alias dockerumi='cd /home/jungyongchoi/oe-server2/work/umi-pro'
-alias testaudiod='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiod_test/audiod-pro'
-alias umicode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/umicode/umi-pro'
+# alias audiodcode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiod-pro'
+alias audiodcode='cd /home/jungyongchoi/codes/audiod-pro'
+# alias gtestaudiod='cd /home/jungyongchoi/oe-server2/code_jcl4tv/gtest_audiod/audiod-pro'
+alias gtestaudiod='cd /home/jungyongchoi/codes/gtest_audiod/audiod-pro'
+# alias pulsecode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/pulseaudio-webos'
+# alias aodcode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiooutputd-pro'
+alias aodcode='cd /home/jungyongchoi/codes/audiooutputd-pro'
+# alias dockeraudiod='cd /home/jungyongchoi/oe-server2/work/audiod-pro'
+# alias dockerumi='cd /home/jungyongchoi/oe-server2/work/umi-pro'
+alias testaudiod='cd /home/jungyongchoi/codes/test_audiod/audiod-pro'
+# alias testaudiod='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiod_test/audiod-pro'
+alias umicode='cd /home/jungyongchoi/codes/umi-pro'
+alias pulsecode='cd /home/jungyongchoi/codes/pulseaudio-webos'
+# alias umicode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/umicode/umi-pro'
 alias log='cd /home/jungyongchoi/log'
 alias copylog='cp /home/jungyongchoi/analyser_log/*.py ./'
 alias cd....='cd ../..'
@@ -162,7 +172,8 @@ alias python='python3'
 alias dev='cd ~/share/dev'
 alias algo2='cd ~/share/dev/algorithm_data_structure/c_algorithm_2'
 alias moe='source ~/mount-oeserver.sh'
-alias autotest='cd /home/jungyongchoi/oe-server2/automation-tests'
+# alias autotest='cd /home/jungyongchoi/oe-server2/automation-tests'
+alias autotest='cd /home/jungyongchoi/codes/automation-tests'
 #alias vi='~/nvim.appimage'
 # alias vi='~/nvim.appimage'
 # alias vim='~/nvim.appimage'
@@ -183,12 +194,12 @@ function push()
 
 function comp()
 {
-    bitbake lib32-$1 -C compile;
+    bitbake $1 -C compile;
 }
 
 function confi()
 {
-    bitbake lib32-$1 -C configure;
+    bitbake $1 -C configure;
 }
 
 function branch()
@@ -237,8 +248,7 @@ function del()
 {
    rm -rf *.pyc
 }
-~
-source "/home/jungyongchoi/mount-oeserver.sh"
+#source "/home/jungyongchoi/mount-oeserver.sh"
 # export EDITOR='~/nvim.appimage'
 # export VISUAL='~/nvim.appimage'
 # export BAT_THEME="onedark"
@@ -251,3 +261,6 @@ export VISUAL=nvim
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 if [ -e /home/jungyongchoi/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jungyongchoi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
