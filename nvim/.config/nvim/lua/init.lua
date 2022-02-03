@@ -133,13 +133,15 @@ paq {'junegunn/fzf.vim'}
 --
 paq {'hrsh7th/vim-vsnip'}
 paq {'hrsh7th/vim-vsnip-integ'}
-paq {'neovim/nvim-lspconfig'}
--- paq {'hrsh7th/nvim-compe'}
+paq {'neovim/nvim-lspconfig', requires='williamboman/nvim-lsp-installer'}
 -- auto completion
 paq {'hrsh7th/nvim-cmp'}
 paq {'hrsh7th/cmp-nvim-lsp'}
 paq {'hrsh7th/vim-vsnip'}
 paq {'hrsh7th/cmp-buffer'}
+paq {'hrsh7th/cmp-vsnip'}
+paq {'hrsh7th/cmp-cmdline'}
+paq {'hrsh7th/cmp-path'}
 paq {'saadparwaiz1/cmp_luasnip'}
 paq {'L3MON4D3/LuaSnip'}
 
@@ -287,49 +289,49 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 --
 vim.g.material_style = "oceanic"
 
-require('material').setup({
-	italics = {
-		comments = true, -- Enable italic comments
-		keywords = true, -- Enable italic keywords
-		functions = false, -- Enable italic functions
-		strings = false, -- Enable italic strings
-		variables = false -- Enable italic variables
-	}
-  })
 -- require('material').setup({
-
--- 	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
--- 	borders = false, -- Enable borders between verticaly split windows
-
--- 	popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
-
 -- 	italics = {
 -- 		comments = true, -- Enable italic comments
 -- 		keywords = true, -- Enable italic keywords
 -- 		functions = false, -- Enable italic functions
 -- 		strings = false, -- Enable italic strings
 -- 		variables = false -- Enable italic variables
--- 	},
+-- 	}
+--   })
+require('material').setup({
 
--- 	contrast_windows = { -- Specify which windows get the contrasted (darker) background
--- 		"terminal", -- Darker terminal background
--- 		"packer", -- Darker packer background
--- 		"qf" -- Darker qf list background
--- 	},
+	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
+	borders = false, -- Enable borders between verticaly split windows
 
--- 	text_contrast = {
--- 		lighter = false, -- Enable higher contrast text for lighter style
--- 		darker = false -- Enable higher contrast text for darker style
--- 	},
+	popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
 
--- 	disable = {
--- 		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
--- 		term_colors = false, -- Prevent the theme from setting terminal colors
--- 		eob_lines = false -- Hide the end-of-buffer lines
--- 	},
+	italics = {
+		comments = true, -- Enable italic comments
+		keywords = false, -- Enable italic keywords
+		functions = false, -- Enable italic functions
+		strings = false, -- Enable italic strings
+		variables = false -- Enable italic variables
+	},
 
--- 	custom_highlights = {} -- Overwrite highlights with your own
--- })
+	contrast_windows = { -- Specify which windows get the contrasted (darker) background
+		"terminal", -- Darker terminal background
+		"packer", -- Darker packer background
+		"qf" -- Darker qf list background
+	},
+
+	text_contrast = {
+		lighter = false, -- Enable higher contrast text for lighter style
+		darker = false -- Enable higher contrast text for darker style
+	},
+
+	disable = {
+		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+		term_colors = false, -- Prevent the theme from setting terminal colors
+		eob_lines = false -- Hide the end-of-buffer lines
+	},
+
+	custom_highlights = {} -- Overwrite highlights with your own
+})
 vim.cmd[[colorscheme material]]
 
 -- local nightfox = require('nightfox').load()
@@ -687,51 +689,109 @@ vim.o.background = "dark" -- to load onelight
 -- luasnip setup
 local luasnip = require 'luasnip'
 
--- nvim-cmp setup
-local cmp = require 'cmp'
-cmp.setup {
+
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
   snippet = {
+    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-      elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if vim.fn.pumvisible() == 1 then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
-      elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
-      else
-        fallback()
-      end
-    end,
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'nvim_lua' },
+    { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
     { name = 'buffer' },
-  },
+  })
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig')['ccls'].setup {
+  capabilities = capabilities
 }
+-- nvim-cmp setup
+-- local cmp = require 'cmp'
+-- cmp.setup {
+--   snippet = {
+--     expand = function(args)
+--       require('luasnip').lsp_expand(args.body)
+--     end,
+--   },
+--   mapping = {
+--     ['<C-p>'] = cmp.mapping.select_prev_item(),
+--     ['<C-n>'] = cmp.mapping.select_next_item(),
+--     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+--     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+--     ['<C-Space>'] = cmp.mapping.complete(),
+--     ['<C-e>'] = cmp.mapping.close(),
+--     ['<CR>'] = cmp.mapping.confirm {
+--       behavior = cmp.ConfirmBehavior.Replace,
+--       select = true,
+--     },
+--     ['<Tab>'] = function(fallback)
+--       if vim.fn.pumvisible() == 1 then
+--         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+--       elseif luasnip.expand_or_jumpable() then
+--         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+--       else
+--         fallback()
+--       end
+--     end,
+--     ['<S-Tab>'] = function(fallback)
+--       if vim.fn.pumvisible() == 1 then
+--         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+--       elseif luasnip.jumpable(-1) then
+--         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+--       else
+--         fallback()
+--       end
+--     end,
+--   },
+--   sources = {
+--     { name = 'nvim_lsp' },
+--     { name = 'luasnip' },
+--     { name = 'nvim_lua' },
+--     { name = 'buffer' },
+--   },
+-- }
 
 
 -- LSP config

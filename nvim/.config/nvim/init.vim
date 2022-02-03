@@ -1,6 +1,10 @@
 lua <<EOF
 require('init')
 require('lua-ls')
+-- lsp
+require('lsp/init')
+require('lsp/keymaps')
+-- require('lsp/installer')
 EOF
 
 fun! TrimWhitespace()
