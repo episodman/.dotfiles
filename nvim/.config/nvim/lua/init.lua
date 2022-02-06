@@ -135,7 +135,45 @@ paq {'hrsh7th/vim-vsnip'}
 paq {'hrsh7th/vim-vsnip-integ'}
 paq {'neovim/nvim-lspconfig', requires='williamboman/nvim-lsp-installer'}
 -- auto completion
-paq {'hrsh7th/nvim-cmp'}
+paq {'hrsh7th/nvim-cmp', requires = {
+  "quangnguyen30192/cmp-nvim-ultisnips",
+  config = function()
+    -- optional call to setup (see customization section)
+    require("cmp_nvim_ultisnips").setup{}
+  end
+  -- If you want to enable filetype detection based on treesitter:
+  -- requires = { "nvim-treesitter/nvim-treesitter" },
+  },
+  config = function()
+      local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+      require("cmp").setup({
+        snippet = {
+          expand = function(args)
+            vim.fn["UltiSnips#Anon"](args.body)
+          end,
+        },
+        sources = {
+          { name = "ultisnips" },
+          -- more sources
+        },
+        -- recommended configuration for <Tab> people:
+        mapping = {
+          ["<Tab>"] = cmp.mapping(
+            function(fallback)
+              cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+            end,
+            { "i", "s", [[ "c" (to enable the mapping in command mode) ]] }
+          ),
+          ["<S-Tab>"] = cmp.mapping(
+            function(fallback)
+              cmp_ultisnips_mappings.jump_backwards(fallback)
+            end,
+            { "i", "s", [[ "c" (to enable the mapping in command mode) ]] }
+          ),
+        },
+      })
+  end
+}
 paq {'hrsh7th/cmp-nvim-lsp'}
 paq {'hrsh7th/vim-vsnip'}
 paq {'hrsh7th/cmp-buffer'}
@@ -144,6 +182,9 @@ paq {'hrsh7th/cmp-cmdline'}
 paq {'hrsh7th/cmp-path'}
 paq {'saadparwaiz1/cmp_luasnip'}
 paq {'L3MON4D3/LuaSnip'}
+
+paq {'sirver/ultisnips'}
+paq {'honza/vim-snippets'}
 
 -- rename
 -- paq {'glepnir/lspsaga.nvim'}
@@ -162,7 +203,7 @@ g['deoplete#enable_at_startup'] = 1  -- e
 
 
 vim.g.rainbow_active = 0
-vim.g.coc_node_path = '/usr/bin/node'
+-- vim.g.coc_node_path = '/usr/bin/node'
 
 -- The Greatest plugin of all time.  I am not bias
 vim.g.vim_be_good_floating = 1
@@ -298,41 +339,41 @@ vim.g.material_style = "oceanic"
 -- 		variables = false -- Enable italic variables
 -- 	}
 --   })
-require('material').setup({
+-- require('material').setup({
 
-	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
-	borders = false, -- Enable borders between verticaly split windows
+-- 	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
+-- 	borders = false, -- Enable borders between verticaly split windows
 
-	popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
+-- 	popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
 
-	italics = {
-		comments = true, -- Enable italic comments
-		keywords = false, -- Enable italic keywords
-		functions = false, -- Enable italic functions
-		strings = false, -- Enable italic strings
-		variables = false -- Enable italic variables
-	},
+-- 	italics = {
+-- 		comments = true, -- Enable italic comments
+-- 		keywords = false, -- Enable italic keywords
+-- 		functions = false, -- Enable italic functions
+-- 		strings = false, -- Enable italic strings
+-- 		variables = false -- Enable italic variables
+-- 	},
 
-	contrast_windows = { -- Specify which windows get the contrasted (darker) background
-		"terminal", -- Darker terminal background
-		"packer", -- Darker packer background
-		"qf" -- Darker qf list background
-	},
+-- 	contrast_windows = { -- Specify which windows get the contrasted (darker) background
+-- 		"terminal", -- Darker terminal background
+-- 		"packer", -- Darker packer background
+-- 		"qf" -- Darker qf list background
+-- 	},
 
-	text_contrast = {
-		lighter = false, -- Enable higher contrast text for lighter style
-		darker = false -- Enable higher contrast text for darker style
-	},
+-- 	text_contrast = {
+-- 		lighter = false, -- Enable higher contrast text for lighter style
+-- 		darker = false -- Enable higher contrast text for darker style
+-- 	},
 
-	disable = {
-		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
-		term_colors = false, -- Prevent the theme from setting terminal colors
-		eob_lines = false -- Hide the end-of-buffer lines
-	},
+-- 	disable = {
+-- 		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+-- 		term_colors = false, -- Prevent the theme from setting terminal colors
+-- 		eob_lines = false -- Hide the end-of-buffer lines
+-- 	},
 
-	custom_highlights = {} -- Overwrite highlights with your own
-})
-vim.cmd[[colorscheme material]]
+-- 	custom_highlights = {} -- Overwrite highlights with your own
+-- })
+-- vim.cmd[[colorscheme material]]
 
 -- local nightfox = require('nightfox').load()
 -- local nightfox = require('nightfox')
@@ -400,10 +441,10 @@ require('lualine').setup {
     -- theme = "nightfox"
     -- theme = "onedarkpro"
     -- theme = "onedark"
-    theme = "tokyonight"
+    -- theme = "tokyonight"
     -- theme = "dracula"
     -- theme = 'dracula-nvim'
-    -- theme = "gruvbox"
+    theme = "gruvbox"
     -- theme = 'material-stealth'
     -- theme = 'material-nvim'
     -- theme = 'github-theme'
@@ -442,9 +483,9 @@ vim.g.smoothie_enabled = 0
 -- vim.cmd[[colorscheme dracula]]
 
 -- vim.g.gruvbox_italic = 1
-vim.g.gruvbox_contrast_dark = 'hard'
+vim.g.gruvbox_contrast_dark = 'smooth'
 vim.g.gruvbox_colors = "bg0: ['#000000', 0]"
--- vim.cmd[[colorscheme gruvbox]]
+vim.cmd[[colorscheme gruvbox]]
 -- vim.g.gruvbox_allow_italics = 1
 
 -- local nightfox = require('nightfox').load()
@@ -481,40 +522,6 @@ vim.g.netrw_winsize = 25
 -- " FZF
 vim.g.fzf_tags_command = 'ctags -R'
 -- " Border color
--- TODO
---vim.g.fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
---
--- " let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'file {}'"
--- vim.g.$FZF_DEFAULT_COMMAND="rg --files --hidden"
--- vim.g.$FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-
--- "Get Files
--- command! -bang -nargs=? -complete=dir Files
---     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-
--- " Get text in files with Rg
--- command! -bang -nargs=* Rg
---   \ call fzf#vim#grep(
---   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
---   \   fzf#vim#with_preview(), <bang>0)
-
--- " Ripgrep advanced
--- function! RipgrepFzf(query, fullscreen)
---   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
---   let initial_command = printf(command_fmt, shellescape(a:query))
---   let reload_command = printf(command_fmt, '{q}')
---   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
---   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
--- endfunction
-
--- command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
--- " Git grep
--- command! -bang -nargs=* GGrep
---   \ call fzf#vim#grep(
---   \   'git grep --line-number '.shellescape(<q-args>), 0,
---   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-
 map('n', '<leader>prw', ':CocSearch <C-R>=expand("<cword>")<CR><CR>',{noremap = true})
 map('n', '<leader>pw', ':Rg <C-R>=expand("<cword>")<CR><CR>',{noremap = true})
 map('n', '<leader>phw', ':h <C-R>=expand("<cword>")<CR><CR>',{noremap = true})
@@ -576,21 +583,6 @@ vim.g.vim_apm_log = 1
 map('v', 'X', '"_d', {noremap = true})
 map('i', '<C-c>', '<Esc>', {noremap = true})
 map('i', 'ii', '<Esc>', {noremap = true})
-
--- TODO:
--- function! s:check_back_space() abort
---  let col = col('.') - 1
---      return !col || getline('.')[col - 1]  =~# '\s'
--- endfunction
-
--- inoremap <silent><expr> <TAB>
--- 	\ pumvisible() ? "\<C-n>" :
--- 	\ <SID>check_back_space() ? "\<TAB>" :
--- 	\ coc#refresh()
-
---inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
---inoremap <silent><expr> <C-space> coc#refresh()
--- map('i', '<expr><S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
 map('i', '<C-space>', 'coc#refresh()', {expr = true})
 
 -- " GoTo code navigation.
@@ -697,10 +689,10 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
       -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
   mapping = {
@@ -716,9 +708,9 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
+    { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
@@ -747,52 +739,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['ccls'].setup {
   capabilities = capabilities
 }
--- nvim-cmp setup
--- local cmp = require 'cmp'
--- cmp.setup {
---   snippet = {
---     expand = function(args)
---       require('luasnip').lsp_expand(args.body)
---     end,
---   },
---   mapping = {
---     ['<C-p>'] = cmp.mapping.select_prev_item(),
---     ['<C-n>'] = cmp.mapping.select_next_item(),
---     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
---     ['<C-f>'] = cmp.mapping.scroll_docs(4),
---     ['<C-Space>'] = cmp.mapping.complete(),
---     ['<C-e>'] = cmp.mapping.close(),
---     ['<CR>'] = cmp.mapping.confirm {
---       behavior = cmp.ConfirmBehavior.Replace,
---       select = true,
---     },
---     ['<Tab>'] = function(fallback)
---       if vim.fn.pumvisible() == 1 then
---         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
---       elseif luasnip.expand_or_jumpable() then
---         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
---       else
---         fallback()
---       end
---     end,
---     ['<S-Tab>'] = function(fallback)
---       if vim.fn.pumvisible() == 1 then
---         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
---       elseif luasnip.jumpable(-1) then
---         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
---       else
---         fallback()
---       end
---     end,
---   },
---   sources = {
---     { name = 'nvim_lsp' },
---     { name = 'luasnip' },
---     { name = 'nvim_lua' },
---     { name = 'buffer' },
---   },
--- }
-
 
 -- LSP config
 local nvim_lsp = require('lspconfig')
@@ -829,7 +775,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls'}
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'ccls', 'jsonls'}
 for _, lsp in ipairs(servers) do
  nvim_lsp[lsp].setup {
    on_attach = on_attach,
@@ -838,19 +784,7 @@ for _, lsp in ipairs(servers) do
    }
  }
 end
--- require'lspconfig'.jsonls.setup {
---     commands = {
---       Format = {
---         function()
---           vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
---         end
---       }
---     }
--- }
---
--- require'lspconfig'.pyright.setup{}
--- require'lspconfig'.clangd.setup{}
---
+
 -- LSP signature
 cfg = {
   bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -996,6 +930,3 @@ vim.api.nvim_set_keymap('n', '<leader>o', [[<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]], { noremap = true, silent = true})
-
-
-

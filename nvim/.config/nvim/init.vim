@@ -1,9 +1,6 @@
 lua <<EOF
 require('init')
 require('lua-ls')
--- lsp
-require('lsp/init')
-require('lsp/keymaps')
 -- require('lsp/installer')
 EOF
 
@@ -33,7 +30,8 @@ if !has('unix')
 endif
 
 let g:AutoClosePumvisible = {"ENTER": "<C-Y>", "ESC": "<ESC>"}
-
-" lspsaga
-" rename
-nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
+autocmd filetype cpp nnoremap <F10> :w !g++ -std=c++14 -O2 -Wall % -o %:r && %:r.exe
+autocmd filetype cpp nnoremap <leader>br :w !g++ -std=c++14 -O2 -Wall % -o %:r && %:r
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
