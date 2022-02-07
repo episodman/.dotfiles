@@ -49,7 +49,7 @@ cmd 'au ColorScheme * highlight Comment gui=italic'
 -- " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- " delays and poor user experience.
 opt.updatetime=50
-opt.colorcolumn='80'
+opt.colorcolumn='120'
 cmd 'au ColorScheme * highlight ColorColumn ctermbg=0 guibg=grey'
 -- " Don't pass messages to |ins-completion-menu|.
 vim.cmd [[set shortmess+=c]]
@@ -401,31 +401,31 @@ vim.g.material_style = "oceanic"
 -- )
 -- nightfox.load()
 
--- local onedarkpro = require('onedarkpro')
--- onedarkpro.setup({
--- --   theme = function(), -- Override with "onedark" or "onelight". Alternatively, remove the option and the theme uses `vim.o.background` to determine
---   colors = {}, -- Override default colors. Can specify colors for "onelight" or "onedark" themes
---   hlgroups = {}, -- Override default highlight groups
---   styles = {
---       strings = "NONE", -- Style that is applied to strings
---       comments = "italic", -- Style that is applied to comments
---       keywords = "italic", -- Style that is applied to keywords
---       functions = "NONE", -- Style that is applied to functions
---       variables = "NONE", -- Style that is applied to variables
---   },
---   options = {
---       bold = false, -- Use the themes opinionated bold styles?
---       italic = false, -- Use the themes opinionated italic styles?
---       underline = true, -- Use the themes opinionated underline styles?
---       undercurl = true, -- Use the themes opinionated undercurl styles?
---       cursorline = false, -- Use cursorline highlighting?
---       transparency = false, -- Use a transparent background?
---       terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
---       window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
---   }
--- })
--- onedarkpro.load()
--- require('onedarkpro').load()
+local onedarkpro = require('onedarkpro')
+onedarkpro.setup({
+--   theme = function(), -- Override with "onedark" or "onelight". Alternatively, remove the option and the theme uses `vim.o.background` to determine
+  colors = {}, -- Override default colors. Can specify colors for "onelight" or "onedark" themes
+  hlgroups = {}, -- Override default highlight groups
+  styles = {
+      strings = "NONE", -- Style that is applied to strings
+      comments = "italic", -- Style that is applied to comments
+      keywords = "italic", -- Style that is applied to keywords
+      functions = "NONE", -- Style that is applied to functions
+      variables = "NONE", -- Style that is applied to variables
+  },
+  options = {
+      bold = false, -- Use the themes opinionated bold styles?
+      italic = false, -- Use the themes opinionated italic styles?
+      underline = true, -- Use the themes opinionated underline styles?
+      undercurl = true, -- Use the themes opinionated undercurl styles?
+      cursorline = false, -- Use cursorline highlighting?
+      transparency = false, -- Use a transparent background?
+      terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
+      window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
+  }
+})
+onedarkpro.load()
+require('onedarkpro').load()
 
 
 
@@ -439,12 +439,12 @@ require('lualine').setup {
   options = {
     -- ... your lualine config
     -- theme = "nightfox"
-    -- theme = "onedarkpro"
+    theme = "onedarkpro"
     -- theme = "onedark"
     -- theme = "tokyonight"
     -- theme = "dracula"
     -- theme = 'dracula-nvim'
-    theme = "gruvbox"
+    -- theme = "gruvbox"
     -- theme = 'material-stealth'
     -- theme = 'material-nvim'
     -- theme = 'github-theme'
@@ -483,9 +483,9 @@ vim.g.smoothie_enabled = 0
 -- vim.cmd[[colorscheme dracula]]
 
 -- vim.g.gruvbox_italic = 1
-vim.g.gruvbox_contrast_dark = 'smooth'
+vim.g.gruvbox_contrast_dark = 'hard'
 vim.g.gruvbox_colors = "bg0: ['#000000', 0]"
-vim.cmd[[colorscheme gruvbox]]
+-- vim.cmd[[colorscheme gruvbox]]
 -- vim.g.gruvbox_allow_italics = 1
 
 -- local nightfox = require('nightfox').load()
@@ -769,7 +769,7 @@ local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+ buf_set_keymap('n', '<space>d', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
