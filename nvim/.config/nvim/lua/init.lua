@@ -113,6 +113,31 @@ paq {'iamcco/markdown-preview.vim'}
 paq {'iamcco/mathjax-support-for-mkdp'}
 paq {'justinmk/vim-sneak'}
 paq {'b3nj5m1n/kommentary'}
+--[[ paq {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup({
+            opleader = {
+                ---Line-comment keymap
+                line = 'gc',
+                ---Block-comment keymap
+                block = 'gb',
+            },
+            mappings = {
+                    ---Operator-pending mapping
+                    ---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+                    ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+                    basic = true,
+                    ---Extra mapping
+                    ---Includes `gco`, `gcO`, `gcA`
+                    extra = true,
+                    ---Extended mapping
+                    ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+                    extended = false,
+                }
+          })
+    end
+} ]]
 paq {'godlygeek/tabular'}
 paq {'plasticboy/vim-markdown'}
 paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
@@ -139,7 +164,7 @@ paq {'hrsh7th/nvim-cmp', requires = {
   "quangnguyen30192/cmp-nvim-ultisnips",
   config = function()
     -- optional call to setup (see customization section)
-    require("cmp_nvim_ultisnips").setup{}
+    require("cmp_nvim_ultisnips").setup({})
   end
   -- If you want to enable filetype detection based on treesitter:
   -- requires = { "nvim-treesitter/nvim-treesitter" },
@@ -226,7 +251,22 @@ require('nvim-autopairs').setup({
 require('gitsigns').setup()
 -- nvim tree
 vim.g.nvim_tree_quit_on_open = 1 -- 0 by default, closes the tree when you open a file
-require('nvim-tree').setup {}
+require('nvim-tree').setup {
+  view = {
+      width = 45,
+      height = 30,
+      hide_root_folder = false,
+      side = 'left',
+      auto_resize = false,
+      mappings = {
+        custom_only = false,
+        list = {}
+      },
+      number = false,
+      relativenumber = false,
+      signcolumn = "yes"
+    }
+}
 
 -- bufferLines
 map('n', '<S-h>', ':BufferLineCyclePrev<CR>',{noremap = true})
@@ -269,7 +309,7 @@ require('bufferline').setup {
 }
 
 --- ctrlp
-cmd 'set wildignore+=*/tmp/*,*.so,*\\tmp\\*,*.swp,*.zip,*.exe'
+cmd 'set wildignore+=*/tmp/*,*.so,*\\tmp\\*,*.swp,*.zip,*.exe,*.pcm,.ccls-cache'
 cmd 'set wildignore+=build*/**,oe*/**,*env*/**,env/**,venv3/**,env/*,venv3/*,tags'
 
 -- " --- vim go (polyglot) settings.
@@ -329,65 +369,82 @@ vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 --
 --
 vim.g.material_style = "oceanic"
+-- vim.g.material_style = "deep ocean"
+-- vim.g.material_style = "darker"
+require('material').setup({
+	contrast = {
+		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+		floating_windows = false, -- Enable contrast for floating windows
+		line_numbers = true, -- Enable contrast background for line numbers
+		sign_column = true, -- Enable contrast background for the sign column
+		cursor_line = true, -- Enable darker background for the cursor line
+		non_current_windows = true, -- Enable darker background for non-current windows
+		popup_menu = false, -- Enable lighter background for the popup menu
 
--- require('material').setup({
--- 	italics = {
--- 		comments = true, -- Enable italic comments
--- 		keywords = true, -- Enable italic keywords
--- 		functions = false, -- Enable italic functions
--- 		strings = false, -- Enable italic strings
--- 		variables = false -- Enable italic variables
--- 	}
---   })
--- require('material').setup({
+		-- sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+		-- floating_windows = false, -- Enable contrast for floating windows
+		-- line_numbers = false, -- Enable contrast background for line numbers
+		-- sign_column = false, -- Enable contrast background for the sign column
+		-- cursor_line = false, -- Enable darker background for the cursor line
+		-- non_current_windows = false, -- Enable darker background for non-current windows
+		-- popup_menu = false, -- Enable lighter background for the popup menu
+	},
 
--- 	contrast = true, -- Enable contrast for sidebars, floating windows and popup menus like Nvim-Tree
--- 	borders = false, -- Enable borders between verticaly split windows
+	italics = {
+		comments = true, -- Enable italic comments
+		keywords = true, -- Enable italic keywords
+		functions = true, -- Enable italic functions
+		-- comments = false, -- Enable italic comments
+		-- keywords = false, -- Enable italic keywords
+		-- functions = false, -- Enable italic functions
+		strings = false, -- Enable italic strings
+		variables = false -- Enable italic variables
+	},
 
--- 	popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
+	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
+		"terminal", -- Darker terminal background
+		"packer", -- Darker packer background
+		"qf" -- Darker qf list background
+	},
 
--- 	italics = {
--- 		comments = true, -- Enable italic comments
--- 		keywords = false, -- Enable italic keywords
--- 		functions = false, -- Enable italic functions
--- 		strings = false, -- Enable italic strings
--- 		variables = false -- Enable italic variables
--- 	},
+	high_visibility = {
+		lighter = false, -- Enable higher contrast text for lighter style
+		darker = false -- Enable higher contrast text for darker style
+	},
 
--- 	contrast_windows = { -- Specify which windows get the contrasted (darker) background
--- 		"terminal", -- Darker terminal background
--- 		"packer", -- Darker packer background
--- 		"qf" -- Darker qf list background
--- 	},
+	disable = {
+		borders = false, -- Disable borders between verticaly split windows
+		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+		term_colors = false, -- Prevent the theme from setting terminal colors
+		eob_lines = false -- Hide the end-of-buffer lines
+	},
 
--- 	text_contrast = {
--- 		lighter = false, -- Enable higher contrast text for lighter style
--- 		darker = false -- Enable higher contrast text for darker style
--- 	},
+	-- lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
+	lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
 
--- 	disable = {
--- 		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
--- 		term_colors = false, -- Prevent the theme from setting terminal colors
--- 		eob_lines = false -- Hide the end-of-buffer lines
--- 	},
+	async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
+    -- custom_highlights = {
+    --         CursorLine = { fg = '#0000FF', gui = 'underline' },
+    --         LineNr = { bg = '#FF0000' }
+    --     }
+	-- custom_highlights = {} -- Overwrite highlights with your own
 
--- 	custom_highlights = {} -- Overwrite highlights with your own
--- })
--- vim.cmd[[colorscheme material]]
+})
+vim.cmd[[colorscheme material]]
 
 -- local nightfox = require('nightfox').load()
 -- local nightfox = require('nightfox')
 -- nightfox.setup(
 -- 	{
--- 	  fox = "palefox", -- change the colorscheme to use nordfox
--- 	  -- fox = "nightfox", -- change the colorscheme to use nordfox
+-- 	  -- fox = "palefox", -- change the colorscheme to use nordfox
+-- 	  fox = "nightfox", -- change the colorscheme to use nordfox
 -- 	  -- fox = "nordfox", -- change the colorscheme to use nordfox
 -- 	  styles = {
 -- 		-- strings = "italic", -- Style that is applied to strings: see `highlight-args` for options
 -- 		comments = "italic", -- change style of comments to be italic
 -- 		keywords = "italic", -- change style of keywords to be bold
 -- 		-- variables = "italic", -- change style of keywords to be bold
--- 		--functions = "italic,bold" -- styles can be a comma separated list
+-- 		functions = "italic,bold" -- styles can be a comma separated list
 -- 	  },
 -- 	  colors = {
 -- 		red = "#FF000", -- Override the red color for MAX POWER
@@ -401,31 +458,31 @@ vim.g.material_style = "oceanic"
 -- )
 -- nightfox.load()
 
-local onedarkpro = require('onedarkpro')
-onedarkpro.setup({
---   theme = function(), -- Override with "onedark" or "onelight". Alternatively, remove the option and the theme uses `vim.o.background` to determine
-  colors = {}, -- Override default colors. Can specify colors for "onelight" or "onedark" themes
-  hlgroups = {}, -- Override default highlight groups
-  styles = {
-      strings = "NONE", -- Style that is applied to strings
-      comments = "italic", -- Style that is applied to comments
-      keywords = "italic", -- Style that is applied to keywords
-      functions = "NONE", -- Style that is applied to functions
-      variables = "NONE", -- Style that is applied to variables
-  },
-  options = {
-      bold = false, -- Use the themes opinionated bold styles?
-      italic = false, -- Use the themes opinionated italic styles?
-      underline = true, -- Use the themes opinionated underline styles?
-      undercurl = true, -- Use the themes opinionated undercurl styles?
-      cursorline = false, -- Use cursorline highlighting?
-      transparency = false, -- Use a transparent background?
-      terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
-      window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
-  }
-})
-onedarkpro.load()
-require('onedarkpro').load()
+-- local onedarkpro = require('onedarkpro')
+-- onedarkpro.setup({
+-- --   theme = function(), -- Override with "onedark" or "onelight". Alternatively, remove the option and the theme uses `vim.o.background` to determine
+--   colors = {}, -- Override default colors. Can specify colors for "onelight" or "onedark" themes
+--   hlgroups = {}, -- Override default highlight groups
+--   styles = {
+--       strings = "NONE", -- Style that is applied to strings
+--       comments = "italic", -- Style that is applied to comments
+--       keywords = "italic", -- Style that is applied to keywords
+--       functions = "NONE", -- Style that is applied to functions
+--       variables = "NONE", -- Style that is applied to variables
+--   },
+--   options = {
+--       bold = false, -- Use the themes opinionated bold styles?
+--       italic = false, -- Use the themes opinionated italic styles?
+--       underline = true, -- Use the themes opinionated underline styles?
+--       undercurl = true, -- Use the themes opinionated undercurl styles?
+--       cursorline = false, -- Use cursorline highlighting?
+--       transparency = false, -- Use a transparent background?
+--       terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
+--       window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
+--   }
+-- })
+-- onedarkpro.load()
+-- require('onedarkpro').load()
 
 
 
@@ -439,7 +496,10 @@ require('lualine').setup {
   options = {
     -- ... your lualine config
     -- theme = "nightfox"
-    theme = "onedarkpro"
+    -- theme = 'material'
+    theme = 'material-stealth'
+    -- theme = 'auto'
+    -- theme = "onedarkpro"
     -- theme = "onedark"
     -- theme = "tokyonight"
     -- theme = "dracula"
@@ -520,7 +580,7 @@ vim.g.netrw_winsize = 25
 
 
 -- " FZF
-vim.g.fzf_tags_command = 'ctags -R'
+-- vim.g.fzf_tags_command = 'ctags -R'
 -- " Border color
 map('n', '<leader>prw', ':CocSearch <C-R>=expand("<cword>")<CR><CR>',{noremap = true})
 map('n', '<leader>pw', ':Rg <C-R>=expand("<cword>")<CR><CR>',{noremap = true})
@@ -540,9 +600,9 @@ map('n', '<Leader>pf', ':Files<CR>',{noremap = true})
 --map('n', '<Leader><CR>', ':so ~/.config/nvim/init.lua<CR>',{noremap = true})
 map('n', '<Leader><CR>', ':so ~/.config/nvim/init.vim<CR>',{noremap = true})
 
-map('n', '<leader>settag', ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=venv3<CR>',{noremap = true})
+map('n', '<leader>settag', ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=venv3 --exclude=.ccls-cache<CR>',{noremap = true})
 map('n', '<leader>sync', ':set tags=$PWD/tags<CR>')
-map('n', '<F5>', ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=venv3<CR>',{noremap = true})
+map('n', '<F5>', ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=venv3 --exclude=.ccls-cache<CR>',{noremap = true})
 map('n', '<F6>', ':set tags=$PWD/tags<CR>',{noremap = true})
 map('n', '<F3>', ':vimgrep /<C-r><C-w>/gj **/*<CR>',{noremap = true})
 
@@ -569,8 +629,8 @@ map('n', '<leader>x',':bdelete<CR>')
 -- nnoremap <leader>d "_d
 -- vnoremap <leader>d "_d
 -- " Start interactive EasyAlign in visual mode (e.g. vipga)
-map('x', 'ga','<Plug>(EasyAlign)')
-map('n', 'ga','<Plug>(EasyAlign)')
+-- map('x', 'ga','<Plug>(EasyAlign)')
+-- map('n', 'ga','<Plug>(EasyAlign)')
 -- "
 cmd 'au Filetype cpp setlocal expandtab tabstop=4 shiftwidth=4'
 cmd 'au Filetype python setlocal expandtab tabstop=4 shiftwidth=4'
@@ -659,10 +719,12 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
   colors = {hint = "orange", error = "#ff0000"}
 }) ]]
 
--- require('kommentary.config').use_extended_mappings()
+require('kommentary.config').use_extended_mappings()
 vim.api.nvim_set_keymap("n", "gcc", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "gc", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("v", "gc", "<Plug>kommentary_visual_default<C-c>", {})
+
+require('Comment').setup()
 
 -- treesitter
 require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
@@ -776,6 +838,11 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'ccls', 'jsonls'}
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
 for _, lsp in ipairs(servers) do
  nvim_lsp[lsp].setup {
    on_attach = on_attach,
@@ -827,7 +894,6 @@ cfg = {
 require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
 
 require('neoscroll').setup()
-
 require('kommentary.config').configure_language(
   "default", {
     prefer_single_line_comments = true,
