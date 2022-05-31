@@ -11,8 +11,7 @@ end
 
 opt.syntax = 'on'
 opt.relativenumber = true
-opt.hlsearch = true
-opt.hidden = true
+opt.hlsearch = true opt.hidden = true
 opt.tabstop=4
 opt.softtabstop=4
 opt.shiftwidth=4
@@ -113,13 +112,13 @@ paq {'tell-k/vim-autopep8'}
 paq {'dart-lang/dart-vim-plugin'}
 paq {'preservim/nerdcommenter'}
 paq {'tpope/vim-surround'}
-paq {'iamcco/markdown-preview.nvim', run = fn['mkdp#util#install()']}
+-- paq {'iamcco/markdown-preview.nvim', run = fn['mkdp#util#install()']}
 -- paq {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
 paq {'kyazdani42/nvim-tree.lua'}
 -- , config = function() require'nvim-tree'.setup {} end}
 paq {'rainux/vim-desert-warm-256'}
 paq {'rakr/vim-one'}
-paq {'iamcco/markdown-preview.vim'}
+-- paq {'iamcco/markdown-preview.vim'}
 paq {'iamcco/mathjax-support-for-mkdp'}
 paq {'justinmk/vim-sneak'}
 paq {'b3nj5m1n/kommentary'}
@@ -148,10 +147,12 @@ paq {'b3nj5m1n/kommentary'}
           })
     end
 } ]]
-paq {'plasticboy/vim-markdown'}
+-- paq {"triglav/vim-visual-increment"}
+-- paq {'plasticboy/vim-markdown'}
 paq {'tiagofumo/vim-nerdtree-syntax-highlight'}
 paq {'ryanoasis/vim-devicons'}
-paq {'Yggdroot/indentLine'}
+paq {"lukas-reineke/indent-blankline.nvim"}
+-- paq {'Yggdroot/indentLine'}
 paq {'junegunn/vim-easy-align'}
 paq {'neoclide/coc.nvim', branch = 'release'}
 paq {'tpope/vim-fugitive'}
@@ -221,6 +222,8 @@ paq {'nvim-telescope/telescope.nvim'}
 paq {'nvim-telescope/telescope-fzy-native.nvim'}
 paq {'nvim-treesitter/playground'}
 g['deoplete#enable_at_startup'] = 1  -- e
+
+
 
 
 vim.g.rainbow_active = 0
@@ -343,13 +346,6 @@ vim.g.python_highlight_all = 1
 vim.g.autopep8_disable_show_diff=1
 vim.g.autopep8_max_line_length=79
 
--- indent line
--- vim.g.indentLine_setColors = 0
--- vim.g.indentLine_color_term = 239
--- vim.g.indentLine_color_gui = '#A4E57E'
-vim.g.indentLine_color_gui = '#808080'
--- vim.g.indentLine_bgcolor_term = 202
--- vim.g.indentLine_bgcolor_gui = '#FF5F00'
 
 cmd 'au FileType python noremap <buffer> <F8> :call Autopep8()<CR>'
 
@@ -357,21 +353,21 @@ cmd 'au FileType python noremap <buffer> <F8> :call Autopep8()<CR>'
 vim.g.netrw_liststyle=3
 vim.g.netrw_altv = 1
 -- Example config in Lua
-vim.g.tokyonight_style = "night"
--- vim.g.tokyonight_style = "storm" -- storm, night, day
+-- vim.g.tokyonight_style = "night"
+vim.g.tokyonight_style = "storm" -- storm, night, day
 -- vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-vim.g.tokyonight_italic_functions=false
+-- vim.g.tokyonight_italic_functions=true
 vim.g.tokyonight_italic_keywords=true
-
-
-vim.g.gruvbox_material_background = 'hard'
-vim.g.gruvbox_material_enable_italic=1
--- vim.cmd("colorscheme gruvbox-material")
 -- vim.cmd("colorscheme tokyonight")
+
+
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_enable_italic=0
+-- vim.cmd("colorscheme gruvbox-material")
 -- require('github-theme').setup({
 --     -- theme_style = 'light'
 --     function_style = "italic",
@@ -390,65 +386,65 @@ vim.g.material_style = "oceanic"
 
 -- vim.g.material_style = "deep ocean"
 -- vim.g.material_style = "darker"
--- require('material').setup({
--- 	contrast = {
--- 		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
--- 		floating_windows = false, -- Enable contrast for floating windows
--- 		line_numbers = false, -- Enable contrast background for line numbers
--- 		sign_column = false, -- Enable contrast background for the sign column
--- 		cursor_line = true, -- Enable darker background for the cursor line
--- 		non_current_windows = false, -- Enable darker background for non-current windows
--- 		popup_menu = false, -- Enable lighter background for the popup menu
+require('material').setup({
+	contrast = {
+		sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+		floating_windows = false, -- Enable contrast for floating windows
+		line_numbers = false, -- Enable contrast background for line numbers
+		sign_column = false, -- Enable contrast background for the sign column
+		cursor_line = false, -- Enable darker background for the cursor line
+		non_current_windows = false, -- Enable darker background for non-current windows
+		popup_menu = false, -- Enable lighter background for the popup menu
 
--- 		-- sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
--- 		-- floating_windows = false, -- Enable contrast for floating windows
--- 		-- line_numbers = false, -- Enable contrast background for line numbers
--- 		-- sign_column = false, -- Enable contrast background for the sign column
--- 		-- cursor_line = false, -- Enable darker background for the cursor line
--- 		-- non_current_windows = false, -- Enable darker background for non-current windows
--- 		-- popup_menu = false, -- Enable lighter background for the popup menu
--- 	},
+		-- sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+		-- floating_windows = false, -- Enable contrast for floating windows
+		-- line_numbers = false, -- Enable contrast background for line numbers
+		-- sign_column = false, -- Enable contrast background for the sign column
+		-- cursor_line = false, -- Enable darker background for the cursor line
+		-- non_current_windows = false, -- Enable darker background for non-current windows
+		-- popup_menu = false, -- Enable lighter background for the popup menu
+	},
 
--- 	italics = {
--- 		comments = true, -- Enable italic comments
--- 		keywords = true, -- Enable italic keywords
--- 		-- functions = true, -- Enable italic functions
--- 		-- comments = false, -- Enable italic comments
--- 		-- keywords = false, -- Enable italic keywords
--- 		functions = false, -- Enable italic functions
--- 		strings = false, -- Enable italic strings
--- 		variables = false -- Enable italic variables
--- 	},
+	italics = {
+		-- comments = true, -- Enable italic comments
+		-- keywords = true, -- Enable italic keywords
+		-- functions = true, -- Enable italic functions
+		-- comments = false, -- Enable italic comments
+		keywords = false, -- Enable italic keywords
+		functions = false, -- Enable italic functions
+		strings = false, -- Enable italic strings
+		variables = false -- Enable italic variables
+	},
 
--- 	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
--- 		"terminal", -- Darker terminal background
--- 		"packer", -- Darker packer background
--- 		"qf" -- Darker qf list background
--- 	},
+	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
+		"terminal", -- Darker terminal background
+		"packer", -- Darker packer background
+		"qf" -- Darker qf list background
+	},
 
--- 	high_visibility = {
--- 		lighter = false, -- Enable higher contrast text for lighter style
--- 		darker = true -- Enable higher contrast text for darker style
--- 	},
+	high_visibility = {
+		lighter = false, -- Enable higher contrast text for lighter style
+		darker = false -- Enable higher contrast text for darker style
+	},
 
--- 	disable = {
--- 		borders = false, -- Disable borders between verticaly split windows
--- 		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
--- 		term_colors = false, -- Prevent the theme from setting terminal colors
--- 		eob_lines = false -- Hide the end-of-buffer lines
--- 	},
+	disable = {
+		borders = false, -- Disable borders between verticaly split windows
+		background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+		term_colors = false, -- Prevent the theme from setting terminal colors
+		eob_lines = false -- Hide the end-of-buffer lines
+	},
 
--- 	-- lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
--- 	lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
+	-- lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
+	lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
 
--- 	async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
---     -- custom_highlights = {
---     --         CursorLine = { fg = '#0000FF', gui = 'underline' },
---     --         LineNr = { bg = '#FF0000' }
---     --     }
--- 	-- custom_highlights = {} -- Overwrite highlights with your own
+	async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
+    -- custom_highlights = {
+    --         CursorLine = { fg = '#0000FF', gui = 'underline' },
+    --         LineNr = { bg = '#FF0000' }
+    --     }
+	-- custom_highlights = {} -- Overwrite highlights with your own
 
--- })
+})
 -- vim.cmd("colorscheme material")
 
 
@@ -542,16 +538,24 @@ require('nightfox').setup({
 -- vim.cmd("colorscheme kanagawa")
 --
 --
+vim.g.catppuccin_flavour = "frappe"
 local catppuccin = require('catppuccin')
 catppuccin.setup({
   transparent_background = false,
   term_colors = false,
   styles = {
       comments = "italic",
+      conditionals = "italic",
+      loops = "NONE",
       functions = "NONE",
-      keywords = "italic",
+      keywords = "NONE",
       strings = "NONE",
       variables = "NONE",
+      numbers = "NONE",
+      booleans = "NONE",
+      properties = "NONE",
+      types = "NONE",
+      operators = "NONE",
   },
   integrations = {
       treesitter = true,
@@ -612,6 +616,8 @@ catppuccin.setup({
 
 local onedarkpro = require('onedarkpro')
 onedarkpro.setup({
+  -- dark_theme = "onedark_vivid",
+  dark_theme = "onedark",
 --   theme = function(), -- Override with "onedark" or "onelight". Alternatively, remove the option and the theme uses `vim.o.background` to determine
   colors = {}, -- Override default colors. Can specify colors for "onelight" or "onedark" themes
   hlgroups = {}, -- Override default highlight groups
@@ -625,30 +631,31 @@ onedarkpro.setup({
       strings = "NONE", -- Style that is applied to strings
       comments = "italic", -- Style that is applied to comments
       keywords = "italic", -- Style that is applied to keywords
-      functions = "bold", -- Style that is applied to functions
+      functions = "NONE", -- Style that is applied to functions
       variables = "NONE", -- Style that is applied to variables
   },
   options = {
-      bold = true, -- Use the themes opinionated bold styles?
+      bold = false, -- Use the themes opinionated bold styles?
       italic = false, -- Use the themes opinionated italic styles?
       underline = false, -- Use the themes opinionated underline styles?
       undercurl = false, -- Use the themes opinionated undercurl styles?
-      cursorline = true, -- Use cursorline highlighting?
+      cursorline = false, -- Use cursorline highlighting?
       transparency = false, -- Use a transparent background?
       terminal_colors = false, -- Use the theme's colors for Neovim's :terminal?
-      window_unfocussed_color = true, -- When the window is out of focus, change the normal background?
+      window_unfocussed_color = false, -- When the window is out of focus, change the normal background?
   }
 })
 onedarkpro.load()
-require('onedarkpro').load()
+-- require('onedarkpro').load()
 -- vim.o.background = "light"
 
 
 
 
-vim.g.everforest_enable_italic = 1
+-- vim.g.everforest_enable_italic = 1
 -- vim.g.everforest_disable_italic_comment = 1
-vim.g.everforest_background= "medium"
+vim.g.everforest_background= 'hard'
+vim.g.everforest_better_performance = 1
 -- vim.cmd("colorscheme everforest")
 -- g:lightline = {'colorscheme': 'tokyonight'}
 --
@@ -680,24 +687,63 @@ require('lualine').setup {
   extensions = {'quickfix'}
 }
 
+-- cmd "autocmd Filetype json let g:indentLine_enabled = 0"
 
--- Example config in lua
-
--- "set termguicolors     " enable true colors support
--- "let ayucolor="dark" " for mirage version of theme
--- " IndentLine {{
--- " let g:indentLine_char = ''
--- " let g:indentLine_first_char = ''
--- vim.g.indentLine_char_list = [['|', '¦', '┆', '┊']]
--- vim.g.indentLine_char_list = [['¦', '┆', ]]
+cmd 'au Filetype json let g:indentLine_enabled = 0' -- " Override LineNr
+vim.g.indentLine_color_gui = '#808080'
 vim.g.indentLine_showFirstIndentLevel = 1
 -- vim.g.indentLine_char = 'c'
 vim.g.indentLine_defaultGroup = 'SpecialKey'
 vim.g.indentLine_concealcursor = 'inc'
 vim.g.indentLine_conceallevel = 2
--- " let g:indentLine_setColors = 0
--- " let g:smoothie_enabled = 1
--- " }}
+vim.g.vim_json_conceal=0
+vim.g.vim_json_syntax_conceal = 0
+
+-- indent-blankline
+vim.cmd [[highlight IndentBlanklineIndent5 guifg=grey gui=nocombine]] -- blue
+-- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]] -- blue
+vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]] -- red
+vim.opt.list = true
+-- vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true,
+    show_end_of_line = true,
+    -- space_char_blankline = " ",
+    -- use_treesitter = true,
+    -- context_highlight_list = {
+    --   "IndentBlanklineIndent5"
+    -- },
+    -- char_highlight_list = {
+    --   "IndentBlanklineIndent1"
+    -- },
+}
+--
+-- vim.opt.termguicolors = true
+-- vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
+-- vim.opt.list = true
+-- vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("eol:↴")
+
+-- require("indent_blankline").setup {
+--     space_char_blankline = " ",
+--     char_highlight_list = {
+--         "IndentBlanklineIndent1",
+--         "IndentBlanklineIndent2",
+--         "IndentBlanklineIndent3",
+--         "IndentBlanklineIndent4",
+--         "IndentBlanklineIndent5",
+--         "IndentBlanklineIndent6",
+--     },
+-- }
 
 vim.g.smoothie_enabled = 0
 -- " colorscheme gruvbox
@@ -930,7 +976,7 @@ cmp.setup({
       vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -940,7 +986,7 @@ cmp.setup({
       c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  },
+  }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     -- { name = 'vsnip' }, -- For vsnip users.
@@ -952,8 +998,17 @@ cmp.setup({
   })
 })
 
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }
@@ -961,6 +1016,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
