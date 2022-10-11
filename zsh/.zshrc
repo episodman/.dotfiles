@@ -146,7 +146,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 #
 alias ls="ls --color=auto"
 alias builddir="/home/jungyongchoi/build/o22/build-starfish"
-alias gtestbuild="/home/jungyongchoi/build/gtest_build/build-starfish"
+alias gtestbuild="/home/jungyongchoi/build/gtest2_build/build-starfish"
 alias buildamp='bitbake lib32-audio-adaptation-layer-amplifier -C configure'
 alias builddelay='bitbake lib32-audio-adaptation-layer-delay-gain -C configure'
 alias buildse='bitbake lib32-audio-adaptation-layer-soundengine -C configure'
@@ -165,7 +165,7 @@ alias umicode='cd /home/jungyongchoi/codes/umi-pro'
 alias pulsecode='cd /home/jungyongchoi/codes/pulseaudio-webos'
 # alias umicode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/umicode/umi-pro'
 alias log='cd /home/jungyongchoi/log'
-alias copylog='cp /home/jungyongchoi/analyser_log/*.py ./'
+alias copylog='cp /home/jungyongchoi/analyser_log/*.py  /home/jungyongchoi/analyser_log/*.sh ./'
 alias cd....='cd ../..'
 alias cd..='cd ..'
 alias python='python3'
@@ -180,6 +180,7 @@ alias worklog='cd /home/jungyongchoi/local_share/helperForDevOps'
 # alias vim='~/nvim.appimage'
 # alias vi='nvim'
 alias vi='nvim'
+alias lvim='~/.local/bin/lvim'
 
 # alias svi='sudo ~/nvim.appimage'
 # alias svim='sudo ~/nvim.appimage'
@@ -207,6 +208,26 @@ function confi()
 function branch()
 {
     git branch -a | grep $1;
+}
+
+function ext()
+{
+  if [ -f $1.tgz ]
+  then
+    mkdir $1 && tar -zxvf $1.tgz -C $1 && cd $1
+  else
+    echo "there was no file"
+  fi
+}
+
+function extn()
+{
+  if [ -f $1.tar.gz ]
+  then
+    mkdir $1 && tar -zxvf $1.tar.gz -C $1 && cd $1
+  else
+    echo "there was no file"
+  fi
 }
 
 # function extract
@@ -266,3 +287,7 @@ if [ -e /home/jungyongchoi/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jun
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
