@@ -13,8 +13,8 @@ local options = {
   showtabline = 0,                         -- always show tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
-  splitbelow = true,                       -- force all horizontal splits to go below current window
-  splitright = true,                       -- force all vertical splits to go to the right of current window
+  --[[ splitbelow = false,                       -- force all horizontal splits to go below current window
+  splitright = false,                       -- force all vertical splits to go to the right of current window ]]
   swapfile = false,                        -- creates a swapfile
   termguicolors = true,                    -- set term gui colors (most terminals support this)
   timeoutlen = 1000,                       -- time to wait for a mapped sequence to complete (in milliseconds)
@@ -29,7 +29,7 @@ local options = {
   laststatus = 3,
   showcmd = false,
   ruler = false,
-  relativenumber = false,                   -- set relative numbered lines
+  relativenumber = true,                   -- set relative numbered lines
   numberwidth = 4,                         -- set number column width to 2 {default 4}
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
@@ -37,7 +37,7 @@ local options = {
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   title = true,
-  relativenumber = true
+
   -- colorcolumn = "80",
   -- colorcolumn = "120",
 
@@ -47,10 +47,10 @@ local options = {
 -- vim.opt.fillchars.eob = " "
 -- vim.opt.fillchars = vim.opt.fillchars + "vertleft: "
 -- vim.opt.fillchars = vim.opt.fillchars + "vertright: "
-vim.opt.fillchars = vim.opt.fillchars + 'eob: '
-vim.opt.fillchars:append {
+-- vim.opt.fillchars = vim.opt.fillchars + 'eob: '
+--[[ vim.opt.fillchars:append {
   stl = ' ',
-}
+} ]]
 
 vim.opt.shortmess:append "c"
 

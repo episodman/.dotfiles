@@ -4,8 +4,10 @@ if not status_ok then
   return
 end
 
-local lualine_scheme = "darkplus_dark"
+-- local lualine_scheme = "vscode"
 -- local lualine_scheme = "onedarker_alt"
+-- local lualine_scheme = "darkplus_dark"
+local lualine_scheme = "catppuccin"
 
 local status_theme_ok, theme = pcall(require, "lualine.themes." .. lualine_scheme)
 if not status_theme_ok then

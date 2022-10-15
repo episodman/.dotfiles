@@ -108,6 +108,50 @@ vim.api.nvim_set_keymap('n', '<leader>gb', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]], { noremap = true, silent = true})
 
 
+-- harpoon
+-- local nnoremap = require("theprimeagen.keymap").nnoremap
+-- local silent = { silent = true }
+
+-- Terminal commands
+-- ueoa is first through fourth finger left hand home row.
+-- This just means I can crush, with opposite hand, the 4 terminal positions
+--
+-- These functions are stored in harpoon.  A plugn that I am developing
+--
+--
+--
+-- nnoremap("<leader>a", function() require("harpoon.mark").add_file() end, silent)
+-- nnoremap("<C-e>", function() require("harpoon.ui").toggle_quick_menu() end, silent)
+-- 
+-- nnoremap("<C-h>", function() require("harpoon.ui").nav_file(1) end, silent)
+-- nnoremap("<C-t>", function() require("harpoon.ui").nav_file(2) end, silent)
+-- nnoremap("<C-n>", function() require("harpoon.ui").nav_file(3) end, silent)
+-- nnoremap("<C-s>", function() require("harpoon.ui").nav_file(4) end, silent)
+--[[ vim.api.nvim_set_keymap('n', '<leader>f',
+  <cmd>function()
+    vim.lsp.buf.format()
+  end , { noremap = true, silent = true}) ]]
+
+
+vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>lua vim.lsp.buf.format()<cr>]], { noremap = true, silent = true})
+
+vim.api.nvim_set_keymap('n', '<leader>a', [[<cmd>lua require("harpoon.mark").add_file()<cr>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>]], { noremap = true, silent = true})
+
+
+vim.api.nvim_set_keymap('n', '<C-h>', [[<cmd>lua require("harpoon.ui").nav_file(1)<cr>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-t>', [[<cmd>lua require("harpoon.ui").nav_file(2)<cr>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-n>', [[<cmd>lua require("harpoon.ui").nav_file(3)<cr>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-s>', [[<cmd>lua require("harpoon.ui").nav_file(4)<cr>]], { noremap = true, silent = true})
+
+
+
+
+
+
+
+
+
 vim.cmd 'au FileType json noremap <buffer> <F8> :%!python -m json.tool <CR>'
 vim.cmd 'au FileType python noremap <buffer> <F8> :call Autopep8()<CR>'
 vim.cmd 'au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown'
@@ -128,3 +172,5 @@ vim.g.vim_json_syntax_conceal = 0
 vim.opt.listchars:append("eol:↴")
 
 vim.opt.clipboard='unnamedplus'
+
+

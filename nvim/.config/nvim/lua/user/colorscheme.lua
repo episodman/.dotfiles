@@ -1,7 +1,20 @@
 -- local colorscheme = "darkplus"
-local colorscheme = "darkplus"
+-- local colorscheme = "darkplus"
+-- local colorscheme = "tokyonight-night"
+-- local colorscheme = "tokyonight-moon"
+-- local colorscheme = "tokyonight-day"
+-- local colorscheme = "onedarker"
 
-vim.g.onedarker_italic_keywords = false
+-- local colorscheme = "material"
+-- local colorscheme = "vscode"
+local colorscheme = "tokyonight-day"
+-- local colorscheme = "catppuccin"
+
+vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
+
+vim.g.material_style = "darker"
+
+vim.g.onedarker_italic_keywords = true
 
 vim.g.onedarker_italic_functions = false
 
