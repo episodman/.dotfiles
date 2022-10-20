@@ -4,7 +4,7 @@
 # fi
 
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="nvim,tmux,zsh"
+    STOW_FOLDERS="nvim,tmux,zsh,lvim"
 fi
 
 if [[ -z $DOTFILES ]]; then
