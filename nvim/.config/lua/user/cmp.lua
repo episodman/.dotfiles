@@ -8,10 +8,10 @@ if not snip_status_ok then
   return
 end
 
-local tabnine_status_ok, _ = pcall(require, "user.tabnine")
+--[[ local tabnine_status_ok, _ = pcall(require, "user.tabnine")
 if not tabnine_status_ok then
   return
-end
+end ]]
 
 local buffer_fts = {
   "markdown",
@@ -164,12 +164,24 @@ cmp.setup {
 
       -- NOTE: order matters
       vim_item.menu = ({
-        nvim_lsp = "",
+        nvim_lsp = "(LSP)",
+        emoji = "(Emoji)",
+        path = "(Path)",
+        calc = "(Calc)",
+        cmp_tabnine = "(Tabnine)",
+        vsnip = "(Snippet)",
+        luasnip = "(Snippet)",
+        buffer = "(Buffer)",
+        tmux = "(TMUX)",
+        copilot = "(Copilot)",
+        treesitter = "(TreeSitter)",
+
+        --[[ nvim_lsp = "",
         nvim_lua = "",
         luasnip = "",
         buffer = "",
         path = "",
-        emoji = "",
+        emoji = "", ]]
       })[entry.source.name]
       return vim_item
     end,

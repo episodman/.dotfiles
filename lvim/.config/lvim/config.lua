@@ -12,6 +12,9 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "tokyonight"
+-- lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "darkplus"
+-- lvim.colorscheme = "dessert"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -47,28 +50,53 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
-    i = {
-      ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-      ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
-      ["<C-x>"] = false,
-      ["<C-j>"] = actions.move_selection_next,
-      ["<C-k>"] = actions.move_selection_previous,
-      ["<C-u>"] = actions.preview_scrolling_up,
-      ["<C-d>"] = actions.preview_scrolling_down,
-      ["<C-c>"] = actions.close,
-      ["<Esc>"] = actions.close,      },
+  i = {
+    ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+    ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
+    ["<C-x>"] = false,
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+    ["<C-u>"] = actions.preview_scrolling_up,
+    ["<C-d>"] = actions.preview_scrolling_down,
+    ["<C-c>"] = actions.close,
+    ["<Esc>"] = actions.close,
+  },
 
-    n = {
-      ["<C-q>"] = actions.send_to_qflist+ actions.open_qflist,
-      ["<C-w>"] = actions.send_selected_to_qflist+ actions.open_qflist,
-      ["<C-j>"] = actions.move_selection_next,
-      ["<C-k>"] = actions.move_selection_previous,
-      ["<C-x>"] = false,
-      ["<C-u>"] = actions.preview_scrolling_up,
-      ["<C-d>"] = actions.preview_scrolling_down,
-      ["<C-c>"] = actions.close,
-      ["<Esc>"] = actions.close      },
+  n = {
+    ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+    ["<C-w>"] = actions.send_selected_to_qflist + actions.open_qflist,
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+    ["<C-x>"] = false,
+    ["<C-u>"] = actions.preview_scrolling_up,
+    ["<C-d>"] = actions.preview_scrolling_down,
+    ["<C-c>"] = actions.close,
+    ["<Esc>"] = actions.close
+  },
 }
+
+-- local _, harpoon = pcall(require, "harpoon")
+lvim.builtin.telescope.load_extension = "harpoon"
+-- lvim.builtin.telescope.load_extension('harpoon')
+-- require('telescope').load_extension('vim_bookmarks')
+
+-- lvim.builtin.telescope.defaults.initial_mode = "insert"
+-- lvim.builtin.telescope.defaults.layout_config.horizontal.mirror = false
+-- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 200
+-- lvim.builtin.telescope.defaults.layout_config.prompt_position = "bottom"
+-- lvim.builtin.telescope.defaults.layout_config.vertical.mirror = false
+lvim.builtin.telescope.defaults.layout_config.width = 0.8
+-- lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+
+
+-- lvim.builtin.telescope.picker.layout_config.width = 0.8
+
+-- lvim.builtin.telescope.pickers.git_files.hidden = true
+lvim.builtin.telescope.pickers.git_files.previewer = false
+lvim.builtin.telescope.pickers.find_files.previewer = false
+-- lvim.builtin.telescope.pickers.git_files.show_untracked = true
+-- lvim.builtin.telescope.pickers.git_files.theme = "horizontal"
+-- lvim.builtin.telescope.pickers.git_files.width = 1.0
 
 
 -- Change theme settings
@@ -86,20 +114,26 @@ lvim.builtin.telescope.defaults.mappings = {
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
+--
+--
+lvim.builtin.which_key.active = false
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+lvim.builtin.notify.active = false
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+
+lvim.builtin.nvimtree.setup.view.width = 55
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "cpp",
   "javascript",
   "json",
   "lua",
@@ -157,20 +191,21 @@ lvim.builtin.treesitter.highlight.enable = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "black", filetypes = { "python" } },
+  -- { command = "autopep8", filetypes = { "python" } },
+  -- { command = "isort", filetypes = { "python" } },
+  {
+    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "prettier",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    extra_args = { "--print-with", "100" },
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -191,6 +226,18 @@ lvim.builtin.treesitter.highlight.enable = true
 -- }
 
 -- Additional Plugins
+lvim.plugins = {
+  {
+    "christianchiarulli/harpoon"
+  },
+  {
+    "lunarvim/Onedarker.nvim"
+  },
+  {
+    "LunarVim/darkplus.nvim"
+  }
+}
+
 -- lvim.plugins = {
 --     {
 --       "folke/trouble.nvim",
@@ -217,4 +264,6 @@ lvim.builtin.treesitter.highlight.enable = true
 -- customize
 
 require "keymaps"
-
+require "option"
+require "harpoon"
+require "nvim-tree"

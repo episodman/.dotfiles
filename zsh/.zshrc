@@ -179,8 +179,9 @@ alias worklog='cd /home/jungyongchoi/local_share/helperForDevOps'
 # alias vi='~/nvim.appimage'
 # alias vim='~/nvim.appimage'
 # alias vi='nvim'
-alias vi='nvim'
+# alias vi='nvim'
 alias lvim='~/.local/bin/lvim'
+alias vi='~/.local/bin/lvim'
 
 # alias svi='sudo ~/nvim.appimage'
 # alias svim='sudo ~/nvim.appimage'
@@ -275,8 +276,10 @@ function del()
 # export EDITOR='~/nvim.appimage'
 # export VISUAL='~/nvim.appimage'
 # export BAT_THEME="onedark"
-export EDITOR=nvim
-export VISUAL=nvim
+# export EDITOR=nvim
+# export VISUAL=nvim
+export EDITOR='~/.local/bin/lvim'
+export VISUAL='~/.local/bin/lvim'
 
 # source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
