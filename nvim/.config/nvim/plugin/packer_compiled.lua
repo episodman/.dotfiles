@@ -105,7 +105,7 @@ _G.packer_plugins = {
     url = "https://github.com/lalitmee/browse.nvim"
   },
   catppuccin = {
-    config = { "\27LJ\2\2g\0\0\2\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\1\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\nsetup\15catppuccin\frequire\nlatte\23catppuccin_flavour\6g\bvim\0" },
+    config = { "\27LJ\2\ng\0\0\3\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\nsetup\15catppuccin\frequire\nlatte\23catppuccin_flavour\6g\bvim\0" },
     loaded = true,
     path = "/home/jungyongchoi/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
@@ -156,7 +156,7 @@ _G.packer_plugins = {
     url = "https://github.com/zbirenbaum/copilot-cmp"
   },
   ["copilot.lua"] = {
-    config = { "\27LJ\2\2,\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\17user.copilot\frequire-\1\0\3\0\3\0\0066\0\0\0009\0\1\0003\1\2\0)\2d\0B\0\3\1K\0\1\0\0\rdefer_fn\bvim\0" },
+    config = { "\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17user.copilot\frequire-\1\0\4\0\3\0\0066\0\0\0009\0\1\0003\2\2\0)\3d\0B\0\3\1K\0\1\0\0\rdefer_fn\bvim\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -291,10 +291,15 @@ _G.packer_plugins = {
     url = "https://github.com/williamboman/mason.nvim"
   },
   ["material.nvim"] = {
-    config = { "\27LJ\2\2þ\3\0\0\4\0\22\0#6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\5\0005\2\3\0004\3\0\0=\3\4\2=\2\6\0015\2\a\0004\3\0\0=\3\b\0024\3\0\0=\3\t\0024\3\0\0=\3\n\0024\3\0\0=\3\v\0024\3\0\0=\3\f\0024\3\0\0=\3\r\0024\3\0\0=\3\14\2=\2\15\0014\2\0\0=\2\16\0015\2\17\0=\2\18\0015\2\19\0=\2\20\0014\2\0\0=\2\21\1B\0\2\1K\0\1\0\22custom_highlights\20high_visibility\1\0\2\vdarker\1\flighter\1\fdisable\1\0\5\16term_colors\1\14eob_lines\1\15background\1\fborders\1\19colored_cursor\1\fplugins\vstyles\ntypes\14operators\14variables\14functions\rkeywords\fstrings\rcomments\1\0\0\rcontrast\1\0\2\18async_loading\2\18lualine_style\fdefault\14filetypes\1\0\5\16cursor_line\1\rterminal\1\rsidebars\1\24non_current_windows\1\21floating_windows\1\nsetup\rmaterial\frequire\0" },
+    config = { "\27LJ\2\nþ\3\0\0\5\0\22\0#6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0004\4\0\0=\4\b\0034\4\0\0=\4\t\0034\4\0\0=\4\n\0034\4\0\0=\4\v\0034\4\0\0=\4\f\0034\4\0\0=\4\r\0034\4\0\0=\4\14\3=\3\15\0024\3\0\0=\3\16\0025\3\17\0=\3\18\0025\3\19\0=\3\20\0024\3\0\0=\3\21\2B\0\2\1K\0\1\0\22custom_highlights\20high_visibility\1\0\2\flighter\1\vdarker\1\fdisable\1\0\5\14eob_lines\1\16term_colors\1\15background\1\fborders\1\19colored_cursor\1\fplugins\vstyles\ntypes\14operators\14variables\14functions\rkeywords\fstrings\rcomments\1\0\0\rcontrast\1\0\2\18async_loading\2\18lualine_style\fdefault\14filetypes\1\0\5\rsidebars\1\24non_current_windows\1\16cursor_line\1\21floating_windows\1\rterminal\1\nsetup\rmaterial\frequire\0" },
     loaded = true,
     path = "/home/jungyongchoi/.local/share/nvim/site/pack/packer/start/material.nvim",
     url = "https://github.com/marko-cerovac/material.nvim"
+  },
+  ["neoscroll.nvim"] = {
+    loaded = true,
+    path = "/home/jungyongchoi/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -493,7 +498,7 @@ _G.packer_plugins = {
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["tokyonight.nvim"] = {
-    config = { "\27LJ\2\2Ñ\1\0\0\4\0\f\0\0176\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\5\0005\3\4\0=\3\6\0025\3\a\0=\3\b\0024\3\0\0=\3\t\0024\3\0\0=\3\n\2=\2\v\1B\0\2\1K\0\1\0\vstyles\14variables\14functions\rkeywords\1\0\1\vitalic\2\rcomments\1\0\2\vfloats\tdark\rsidebars\tdark\1\0\1\vitalic\2\1\0\1\nstyle\bday\nsetup\15tokyonight\frequire\0" },
+    config = { "\27LJ\2\nÑ\1\0\0\5\0\f\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\0034\4\0\0=\4\t\0034\4\0\0=\4\n\3=\3\v\2B\0\2\1K\0\1\0\vstyles\14variables\14functions\rkeywords\1\0\1\vitalic\2\rcomments\1\0\2\vfloats\tdark\rsidebars\tdark\1\0\1\vitalic\2\1\0\1\nstyle\bday\nsetup\15tokyonight\frequire\0" },
     loaded = true,
     path = "/home/jungyongchoi/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
@@ -556,17 +561,17 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: catppuccin
-time([[Config for catppuccin]], true)
-try_loadstring("\27LJ\2\2g\0\0\2\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\1\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\nsetup\15catppuccin\frequire\nlatte\23catppuccin_flavour\6g\bvim\0", "config", "catppuccin")
-time([[Config for catppuccin]], false)
 -- Config for: tokyonight.nvim
 time([[Config for tokyonight.nvim]], true)
-try_loadstring("\27LJ\2\2Ñ\1\0\0\4\0\f\0\0176\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0005\2\5\0005\3\4\0=\3\6\0025\3\a\0=\3\b\0024\3\0\0=\3\t\0024\3\0\0=\3\n\2=\2\v\1B\0\2\1K\0\1\0\vstyles\14variables\14functions\rkeywords\1\0\1\vitalic\2\rcomments\1\0\2\vfloats\tdark\rsidebars\tdark\1\0\1\vitalic\2\1\0\1\nstyle\bday\nsetup\15tokyonight\frequire\0", "config", "tokyonight.nvim")
+try_loadstring("\27LJ\2\nÑ\1\0\0\5\0\f\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\0034\4\0\0=\4\t\0034\4\0\0=\4\n\3=\3\v\2B\0\2\1K\0\1\0\vstyles\14variables\14functions\rkeywords\1\0\1\vitalic\2\rcomments\1\0\2\vfloats\tdark\rsidebars\tdark\1\0\1\vitalic\2\1\0\1\nstyle\bday\nsetup\15tokyonight\frequire\0", "config", "tokyonight.nvim")
 time([[Config for tokyonight.nvim]], false)
+-- Config for: catppuccin
+time([[Config for catppuccin]], true)
+try_loadstring("\27LJ\2\ng\0\0\3\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\4\0'\2\5\0B\0\2\0029\0\6\0B\0\1\1K\0\1\0\nsetup\15catppuccin\frequire\nlatte\23catppuccin_flavour\6g\bvim\0", "config", "catppuccin")
+time([[Config for catppuccin]], false)
 -- Config for: material.nvim
 time([[Config for material.nvim]], true)
-try_loadstring("\27LJ\2\2þ\3\0\0\4\0\22\0#6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\5\0005\2\3\0004\3\0\0=\3\4\2=\2\6\0015\2\a\0004\3\0\0=\3\b\0024\3\0\0=\3\t\0024\3\0\0=\3\n\0024\3\0\0=\3\v\0024\3\0\0=\3\f\0024\3\0\0=\3\r\0024\3\0\0=\3\14\2=\2\15\0014\2\0\0=\2\16\0015\2\17\0=\2\18\0015\2\19\0=\2\20\0014\2\0\0=\2\21\1B\0\2\1K\0\1\0\22custom_highlights\20high_visibility\1\0\2\vdarker\1\flighter\1\fdisable\1\0\5\16term_colors\1\14eob_lines\1\15background\1\fborders\1\19colored_cursor\1\fplugins\vstyles\ntypes\14operators\14variables\14functions\rkeywords\fstrings\rcomments\1\0\0\rcontrast\1\0\2\18async_loading\2\18lualine_style\fdefault\14filetypes\1\0\5\16cursor_line\1\rterminal\1\rsidebars\1\24non_current_windows\1\21floating_windows\1\nsetup\rmaterial\frequire\0", "config", "material.nvim")
+try_loadstring("\27LJ\2\nþ\3\0\0\5\0\22\0#6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0004\4\0\0=\4\b\0034\4\0\0=\4\t\0034\4\0\0=\4\n\0034\4\0\0=\4\v\0034\4\0\0=\4\f\0034\4\0\0=\4\r\0034\4\0\0=\4\14\3=\3\15\0024\3\0\0=\3\16\0025\3\17\0=\3\18\0025\3\19\0=\3\20\0024\3\0\0=\3\21\2B\0\2\1K\0\1\0\22custom_highlights\20high_visibility\1\0\2\flighter\1\vdarker\1\fdisable\1\0\5\14eob_lines\1\16term_colors\1\15background\1\fborders\1\19colored_cursor\1\fplugins\vstyles\ntypes\14operators\14variables\14functions\rkeywords\fstrings\rcomments\1\0\0\rcontrast\1\0\2\18async_loading\2\18lualine_style\fdefault\14filetypes\1\0\5\rsidebars\1\24non_current_windows\1\16cursor_line\1\21floating_windows\1\rterminal\1\nsetup\rmaterial\frequire\0", "config", "material.nvim")
 time([[Config for material.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

@@ -1,61 +1,34 @@
 --[[
-lvim is the global options object
-
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
+ THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+ `lvim` is the global options object
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+
+-- vim options
+-- vim.opt.shiftwidth = 2
+-- vim.opt.tabstop = 2
+-- vim.opt.relativenumber = true
 
 -- general
-lvim.log.level = "warn"
-lvim.format_on_save = false
--- lvim.colorscheme = "tokyonight"
--- lvim.colorscheme = "catppuccin"
--- lvim.colorscheme = "catppuccin-latte"
--- lvim.colorscheme = "rose-pine"
--- lvim.builtin.theme.options.style = "day"
--- lvim.builtin.theme.options.style = "day"
--- lvim.builtin.theme.flavour = "latte"
--- lvim.builtin.theme.options.style = "dawn"
--- lvim.colorscheme = "darkplus"
-lvim.colorscheme = "tokyonight"
--- lvim.colorscheme = "onedark"
--- lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "dessert"
+lvim.log.level = "info"
+lvim.format_on_save = {
+    enabled = true,
+    pattern = "*.lua",
+    timeout = 1000,
+}
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
--- unmap a default keymapping
--- vim.keymap.del("n", "<C-Up>")
--- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
-
+-- -- Use which-key to add extra bindings with the leader-key prefix
+-- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
+-- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.telescope.defaults.mappings = {
@@ -84,61 +57,22 @@ lvim.builtin.telescope.defaults.mappings = {
     },
 }
 
--- local _, harpoon = pcall(require, "harpoon")
-lvim.builtin.telescope.load_extension = "harpoon"
--- lvim.builtin.telescope.load_extension('harpoon')
--- require('telescope').load_extension('vim_bookmarks')
-
--- lvim.builtin.telescope.defaults.initial_mode = "insert"
--- lvim.builtin.telescope.defaults.layout_config.horizontal.mirror = false
--- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 200
--- lvim.builtin.telescope.defaults.layout_config.prompt_position = "bottom"
--- lvim.builtin.telescope.defaults.layout_config.vertical.mirror = false
-lvim.builtin.telescope.defaults.layout_config.width = 0.8
--- lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
-
-
--- lvim.builtin.telescope.picker.layout_config.width = 0.8
-
--- lvim.builtin.telescope.pickers.git_files.hidden = true
-lvim.builtin.telescope.pickers.git_files.previewer = false
-lvim.builtin.telescope.pickers.find_files.previewer = false
--- lvim.builtin.telescope.pickers.git_files.show_untracked = true
--- lvim.builtin.telescope.pickers.git_files.theme = "horizontal"
--- lvim.builtin.telescope.pickers.git_files.width = 1.0
-
-
--- Change theme settings
--- lvim.builtin.theme.options.dim_inactive = true
--- lvim.builtin.theme.options.style = "storm"
-
--- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
--- }
---
---
 lvim.builtin.which_key.active = false
+-- -- Change theme settings
+-- lvim.colorscheme = "lunar"
+lvim.colorscheme = "onenord"
+-- lvim.colorscheme = "solarized"
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
--- lvim.builtin.notify.active = false
-lvim.builtin.terminal.active = false
--- lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.terminal.active = true
 
--- lvim.builtin.nvimtree.setup.view.width = 55
+lvim.builtin.nvimtree.active = false
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
--- if you don't want all the parsers change this to a table of the ones you want
+-- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.ensure_installed = {
     "bash",
     "c",
@@ -154,36 +88,31 @@ lvim.builtin.treesitter.ensure_installed = {
     "java",
     "yaml",
 }
+lvim.builtin.treesitter.auto_install = true
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enable = true
 
--- generic LSP settings
+-- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+        underline = false
+    }
+)
 
--- -- make sure server will always be installed even if the server is in skipped_servers list
--- lvim.lsp.installer.setup.ensure_installed = {
---     "sumneko_lua",
---     "jsonls",
--- }
--- -- change UI setting of `LspInstallInfo`
--- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
--- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
--- lvim.lsp.installer.setup.ui.border = "rounded"
--- lvim.lsp.installer.setup.ui.keymaps = {
---     uninstall_server = "d",
---     toggle_server_expand = "o",
--- }
+lvim.builtin.cmp.cmdline.enable = true
 
--- ---@usage disable automatic installation of servers
+-- --- disable automatic installation of servers
 -- lvim.lsp.installer.setup.automatic_installation = false
 
--- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
--- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
+-- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
+-- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
--- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
+-- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 --   return server ~= "emmet_ls"
@@ -199,7 +128,7 @@ lvim.builtin.treesitter.highlight.enable = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- set a formatter, this will override the language server formatting capabilities (if it exists)
+-- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
     { command = "black", filetypes = { "python" } },
@@ -233,8 +162,25 @@ linters.setup {
         filetypes = { "javascript", "python" },
     },
 }
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "stylua" },
+--   {
+--     command = "prettier",
+--     extra_args = { "--print-width", "100" },
+--     filetypes = { "typescript", "typescriptreact" },
+--   },
+-- }
+-- local linters = require "lvim.lsp.null-ls.linters"
+-- linters.setup {
+--   { command = "flake8", filetypes = { "python" } },
+--   {
+--     command = "shellcheck",
+--     args = { "--severity", "warning" },
+--   },
+-- }
 
--- Additional Plugins
+-- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
     {
         "christianchiarulli/harpoon"
@@ -254,32 +200,75 @@ lvim.plugins = {
         -- end
     },
     {
-        'rose-pine/neovim', as = 'rose-pine'
+        -- 'rose-pine/neovim', as = 'rose-pine'
+        'rose-pine/neovim', name = 'rose-pine'
     },
     {
-        "catppuccin/nvim", as = "catppuccin",
+        -- "catppuccin/nvim", as = "catppuccin",
+        "catppuccin/nvim", name = "catppuccin",
     },
     {
         "tpope/vim-fugitive"
     },
     {
         "navarasu/onedark.nvim"
-    }
+    },
+    { "rmehri01/onenord.nvim" },
+    { "nvim-neo-tree/neo-tree.nvim" },
+    { "MunifTanjim/nui.nvim" },
+    { "marko-cerovac/material.nvim" },
+    { "ishan9299/nvim-solarized-lua" },
+    {
+        "folke/todo-comments.nvim",
+        -- requires = "nvim-lua/plenary.nvim",
+        dependencies = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    },
+    { 'Mofiqul/vscode.nvim' },
+    { 'psliwka/vim-smoothie' },
+    { "tpope/vim-repeat" },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        config = function() require "lsp_signature".on_attach() end,
+    },
+    -- {
+    --     "karb94/neoscroll.nvim",
+    --     -- event = "WinScrolled",
+    --     event = "WinScrolled",
+    --     config = function()
+    --         require('neoscroll').setup()
+    --     end,
+    --     -- config = function()
+    --     --     require('neoscroll').setup ({
+    --     --         -- All these keys will be mapped to their corresponding default scrolling animation
+    --     --         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+    --     --             '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+    --     --         hide_cursor = true, -- Hide cursor while scrolling
+    --     --         stop_eof = true, -- Stop at <EOF> when scrolling downwards
+    --     --         use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+    --     --         respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    --     --         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    --     --         easing_function = nil, -- Default easing function
+    --     --         pre_hook = nil, -- Function to run before the scrolling animation starts
+    --     --         post_hook = nil, -- Function to run after the scrolling animation ends
+    --     --     })
+    --     -- end
+    -- },
+    -- {
+    --     "npxbr/glow.nvim",
+    --     ft = { "markdown" }
+    --     -- run = "yay -S glow"
+    -- },
 }
 
--- lvim.plugins = {
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
+-- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
@@ -287,13 +276,20 @@ lvim.plugins = {
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
-
-
-
+--
 -- customize
-
-require "keymaps"
-require "option"
 require "harpoon"
 -- require "nvim-tree"
--- require "colorscheme"
+require "keymaps"
+require "option"
+require "neotree"
+require "colorscheme"
+require "autocmd"
+
+
+
+-- dependencies "keymaps"
+-- dependencies "option"
+-- dependencies "eotree"
+-- dependencies "colorscheme"
+-- dependencies "autocmd"

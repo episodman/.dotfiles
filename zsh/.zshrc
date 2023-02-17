@@ -25,6 +25,8 @@ export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
+# local bin
+export PATH=~/.local/bin:$PATH
 
 # export PATH="$PATH:`pwd`/flutter/bin"
 
@@ -145,12 +147,14 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias ls="ls --color=auto"
+alias oebuilddir="cd /home/jungyongchoi/oe-server2/build"
 alias builddir="/home/jungyongchoi/build/o22/build-starfish"
 alias gtestbuild="/home/jungyongchoi/build/gtest2_build/build-starfish"
 alias buildamp='bitbake lib32-audio-adaptation-layer-amplifier -C configure'
 alias builddelay='bitbake lib32-audio-adaptation-layer-delay-gain -C configure'
 alias buildse='bitbake lib32-audio-adaptation-layer-soundengine -C configure'
-# alias audiodcode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiod-pro'
+alias oeaudiodcode='cd /home/jungyongchoi/oe-server2/codes/audiod-pro'
+alias oecode='cd ~/oe-server2/codes'
 alias audiodcode='cd /home/jungyongchoi/codes/audiod-pro'
 # alias gtestaudiod='cd /home/jungyongchoi/oe-server2/code_jcl4tv/gtest_audiod/audiod-pro'
 alias gtestaudiod='cd /home/jungyongchoi/codes/gtest_audiod/audiod-pro'
@@ -162,6 +166,7 @@ alias aodcode='cd /home/jungyongchoi/codes/audiooutputd-pro'
 alias testaudiod='cd /home/jungyongchoi/codes/test_audiod/audiod-pro'
 # alias testaudiod='cd /home/jungyongchoi/oe-server2/code_jcl4tv/audiod_test/audiod-pro'
 alias umicode='cd /home/jungyongchoi/codes/umi-pro'
+alias oeumicode='cd /home/jungyongchoi/oe-server2/codes/umicode/umi-pro'
 alias pulsecode='cd /home/jungyongchoi/codes/pulseaudio-webos'
 # alias umicode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/umicode/umi-pro'
 alias log='cd /home/jungyongchoi/log'
@@ -175,6 +180,7 @@ alias moe='source ~/mount-oeserver.sh'
 # alias autotest='cd /home/jungyongchoi/oe-server2/automation-tests'
 alias autotest='cd /home/jungyongchoi/codes/automation-tests'
 alias worklog='cd /home/jungyongchoi/local_share/helperForDevOps'
+alias dotfile='cd /home/jungyongchoi/.dotfiles'
 #alias vi='~/nvim.appimage'
 # alias vi='~/nvim.appimage'
 # alias vim='~/nvim.appimage'
