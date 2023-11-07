@@ -7,12 +7,16 @@
 # will be replaced.
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
-#import:
+# import:
+#  - /path/to/alacritty.yml
 #  - /path/to/alacritty.yml
 import:
-  - ~/.config/alacritty/dracula.yml
-  - ~/.config/alacritty/tokyo-night.yaml
-  - ~/.config/alacritty/tokyo-night.yaml
+  # - ~/.config/alacritty/dracula.yml
+  # - ~/.config/alacritty/tokyo-night.yaml
+  # - ~/.config/alacritty/tokyo-night.yaml
+  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
+  - ~/.config/alacritty/solarized.yml
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
 
 
 # Any items in the `env` entry below will be added as
@@ -115,39 +119,85 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: Hack Nerd font
-    # family: Dejavu Sans Mono
     # family: Dejavu Sans Mono Nerd font
-    # family: Jetbrains Mono
     # family: PragmataPro Liga
     # family: Inconsolata-g
     # family: FantasqueSansMono Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: Consolas NF
-    family: Mononoki Nerd Font
-    # family: Cascadia Code
-    # family: Cascadia Code PL
     # family: Cascadia Mono PL
     # family: IBM Plex mono
     # family: MesloLGS Nerd font
     # family: MesloLGM Nerd font
     # family: MesloLGMDZ Nerd font
     # family: Fira Code
-    # family: Hasklig
+    # family: Haskli
     # family: Monaco
-    # family: D2Coding Ligature
-    # family: Ubuntu Mono
-    # family: Source Code Pro
-    # family: Inconsolata-g
+    # family: Mononoki Nerd Font
+    family: D2Coding Nerd Font
+    family: MonoPlex kr Wide Nerd Text
+    family: Intel One Mono
+    family: Rec Mono Duotone
+    family: CamingoCode
+    family: Julia Mono
+    family: Victor Mono Medium
+    family: Victor Mono Bold
+    family: Victor Mono SemiBold
+    family: Source Code pro Medium
+    family: PT Code
+    family: Cascadia Code PL
+    family: Dank Mono
+    family: operator Mono lig
+    family: Cascadia Mono
+    family: monospace
+    family: ComicShannsMono Nerd Font Mono
+    family: Cascadia Mono Light
+    family: Cascadia Code PL
+    family: noto sans mono cjk kr
+    family: Liga SF Mono Nerd Font
+    family: Source hans mono k
+    family: Red Hat Mono Medium
+    family: D2Coding Ligature
+    family: roboto mono
+    family: Source han mono k
+    family: Source Code Pro
+    family: ubuntu mono
+    family: Pragmasevka
+    family: MonoLisa
+    family: MonoPlex kr Nerd Text
+    family: monospace
+    family: CasMata Pro
+    family: consolas ligaturized v3
+    family: Dejavu Sans Mono
+    family: consolas
+    family: Bitstream Vera sans mono
+    family: Fira Code
+    family: Red Hat Mono
+    family: Cascadia Code PL
+    family: Cousine Nerd Font Mono
+    family: consolas NF
+    family: Hack Nerd Font Mono
+    family: D2Coding
+    family: NanumGothicCoding
+    family: Inconsolata Semi expanded
+    family: Fira Mono Nerd Font Mono
+    family: operator Mono
+    family: Maple Mono NF
+    family: Jetbrains Mono Medium
+    family: 0xProto
+    family: CommitMono
 
     # The `style` can be specified to pick a specific face.
-    # style: Regular
+    style: Regular
+    # style: bold
+    # style: SemiBold
+    # style: Medium
     # style: Regular
     # style: SemiLight
     # style: Light
     # style: Medium
-    # style: Retina
     # style: text
+    # style: Retina
     # style: book
 
   # Bold font face
@@ -169,7 +219,7 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-    # family: Cascadia Code PL
+    # family: JetBrainsMono Medium
 
     # The `style` can be specified to pick a specific face.
     # style: Italic
@@ -187,15 +237,24 @@ font:
     # style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 10
+  size: 10.5
+  size: 11
+  # size: 11.5
+  # size: 12
+  # size: 12.5
+  # size: 13
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
    x: 0
+   # x: 1
    y: 0
-   # y: 0
+   y: 1
+   # y: 2
+   # y: 3
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
@@ -218,7 +277,7 @@ font:
 #
 #
 # onedark
-colors:
+# colors:
   # Default colors
   # primary:
   #   background: '0x1e2127'
@@ -317,29 +376,29 @@ colors:
 #     white:   '0xacb0d0'
 
   # gruvbox
-  primary:
-    background: '0x282828'
-    foreground: '0xdfbf8e'
+  # primary:
+  #   background: '0x282828'
+  #   foreground: '0xdfbf8e'
 
-  normal:
-    black:   '0x665c54'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe78a4e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+  # normal:
+  #   black:   '0x665c54'
+  #   red:     '0xea6962'
+  #   green:   '0xa9b665'
+  #   yellow:  '0xe78a4e'
+  #   blue:    '0x7daea3'
+  #   magenta: '0xd3869b'
+  #   cyan:    '0x89b482'
+  #   white:   '0xdfbf8e'
 
-  bright:
-    black:   '0x928374'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe3a84e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+  # bright:
+  #   black:   '0x928374'
+  #   red:     '0xea6962'
+  #   green:   '0xa9b665'
+  #   yellow:  '0xe3a84e'
+  #   blue:    '0x7daea3'
+  #   magenta: '0xd3869b'
+  #   cyan:    '0x89b482'
+  #   white:   '0xdfbf8e'
 
     # Bright and dim foreground colors
     #

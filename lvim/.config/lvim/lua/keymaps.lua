@@ -14,6 +14,7 @@ vim.api.nvim_set_keymap('n', '<leader>u', ':UndotreeShow<CR>', { noremap = true 
 -- vim.api.nvim_set_keymap('n', '<leader>t', ':NERDTreeToggle<CR>',{noremap = true})
 -- vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeToggle<CR>',{noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>t', ':NeoTreeFocusToggle<CR>', { noremap = true })
+
 -- vim.api.nvim_set_keymap('n', '<leader>t', ':NeoTreeRevealToggle<CR>',{noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>ps', ':Rg<SPACE>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':GFiles<CR>', { noremap = true })
@@ -22,24 +23,24 @@ vim.api.nvim_set_keymap('n', '<Leader>pf', ':Files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader><CR>', ':so ~/.config/nvim/init.vim<CR>', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<leader>settag',
-    ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=venv3 --exclude=.ccls-cache --exclude=resources<CR>'
-    , { noremap = true })
+  ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=venv3 --exclude=.ccls-cache --exclude=resources<CR>'
+  , { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>sync', ':set tags=$PWD/tags<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<F5>',
-    ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=tests --exclude=venv3 --exclude=.ccls-cache --exclude=resources<CR>'
-    , { noremap = true })
+  ':!ctags -R --exclude=oe-logs --exclude=oe-workdir --exclude=env --exclude=tests --exclude=venv3 --exclude=.ccls-cache --exclude=resources<CR>'
+  , { noremap = true })
 vim.api.nvim_set_keymap('n', '<F6>', ':set tags=$PWD/tags<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<F3>', ':vimgrep /<C-r><C-w>/gj **/*<CR>', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<Leader>+', ':vertical resize +5<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>-', ':vertical resize -5<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>ee', 'oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>',
-    { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<Leader>ee', 'oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>',
+--     { noremap = true })
 -- nnorevim.api.nvim_set_keymap '<Leader><CR>' ':so ~/.config/nvim/init.vim<CR>''
 -- "nnorevim.api.nvim_set_keymap <Leader><CR> :so ~/.vimrc<CR>
 -- "nnorevim.api.nvim_set_keymap <Leader><CR> :so ~/config/nvim/init.vim<CR>
-vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
-vim.api.nvim_set_keymap('v', 'K', ':m \'>-2<CR>gv=gv', { noremap = true })
+-- vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
+-- vim.api.nvim_set_keymap('v', 'K', ':m \'>-2<CR>gv=gv', { noremap = true })
 vim.api.nvim_set_keymap('n', '<F9>', ':Tlist<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<silent> <F9>', ':Rgrep<CR>', { noremap = true })
 
@@ -95,7 +96,7 @@ vim.api.nvim_set_keymap('n', '<leader>gh', ':diffget //3<CR>', { noremap = true 
 vim.api.nvim_set_keymap('n', '<leader>gu', ':diffget //2<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<C-c>', '"+y', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<C-c>', '"+y', { noremap = true })
 vim.api.nvim_set_keymap('n', 'yy', '"+yy', { noremap = true })
 vim.api.nvim_set_keymap('n', 'y', '"+y', { noremap = true })
 vim.api.nvim_set_keymap('n', 'Y', '"+y$', { noremap = true })
@@ -103,39 +104,61 @@ vim.api.nvim_set_keymap('n', 'x', '"+x', { noremap = true })
 vim.api.nvim_set_keymap('n', 'D', '"+D', { noremap = true })
 vim.api.nvim_set_keymap('n', 'dd', '"+dd', { noremap = true })
 
+if vim.g.neovide then
+  -- vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+  -- vim.keymap.set('v', '<C-c>', '"+y')           -- Copy
+  vim.keymap.set('v', '<C-S-c>', '"+y')           -- Copy
+  -- vim.keymap.set('n', '<C-v>', '"+P')           -- Paste normal mode
+  vim.keymap.set('n', '<C-S-v>', '"+P')           -- Paste normal mode
+  -- vim.keymap.set('v', '<C-v>', '"+P')           -- Paste visual mode
+  vim.keymap.set('v', '<C-S-v>', '"+P')           -- Paste visual mode
+  -- vim.keymap.set('c', '<C-v>', '<C-R>+')        -- Paste command mode
+  vim.keymap.set('c', '<C-S-v>', '<C-R>+')        -- Paste command mode
+  -- vim.keymap.set('i', '<C-v>', '<ESC>l"+Pli')   -- Paste insert mode
+  vim.keymap.set('i', '<C-S-v>', '<ESC>l"+Pli')   -- Paste insert mode
+end
+
+-- Allow clipboard copy paste in neovim
+-- vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
 
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true })
 vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
 
 -- for telescope
 --
+vim.api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require('telescope.builtin').marks()<cr>]],
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>pf', [[<cmd>lua require('telescope.builtin').find_files()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd>lua require('telescope.builtin').git_files({previewer = false, layout_config = {width = 0.5}})<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd>lua require('telescope.builtin').git_files()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 --vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd>lua require('telescope.builtin').git_files()<cr>]], { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd>lua require('telescope.builtin').git_files()<cr>]], {})
 vim.api.nvim_set_keymap('n', '<leader>pb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>pw',
-    [[<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.expand("<cword>")}<cr>]],
-    { noremap = true, silent = true })
+  [[<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.expand("<cword>")}<cr>]],
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ps',
-    [[<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.input("Grep for > ")}<cr>]],
-    { noremap = true, silent = true })
+  [[<cmd>lua require('telescope.builtin').grep_string{ search = vim.fn.input("Grep for > ")}<cr>]],
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>o',
-    [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]], { noremap = true, silent = true })
+  [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]],
-    { noremap = true, silent = true })
+  { noremap = true, silent = true })
 
 
 -- harpoon
@@ -163,7 +186,8 @@ vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin
   end , { noremap = true, silent = true}) ]]
 
 
--- vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>lua vim.lsp.buf.format()<cr>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>lua vim.lsp.buf.format()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>lua vim.lsp.buf.format()<cr>]], { noremap = true })
 
 
 -- #harpoon
@@ -197,6 +221,13 @@ vim.cmd 'au BufWritePost plugins.lua PackerCompile'
 vim.cmd 'au FileType python noremap <buffer> <F8> :call Autopep8()<CR>'
 
 vim.cmd 'au Filetype json let g:indentLine_enabled = 0' -- " Override LineNr
+
+
+-- folder
+-- vim.cmd 'set foldlevel=20'
+-- vim.cmd 'set foldmethod=expr'
+-- vim.cmd 'set foldexpr=nvim_treesitter#foldexpr()'
+
 
 vim.g.indentLine_color_gui = '#808080'
 vim.g.indentLine_showFirstIndentLevel = 1

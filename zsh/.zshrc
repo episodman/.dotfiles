@@ -26,7 +26,8 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 # local bin
-export PATH=~/.local/bin:$PATH
+# export PATH=~/.local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # export PATH="$PATH:`pwd`/flutter/bin"
 
@@ -35,6 +36,17 @@ export ZSH="${HOME}/.oh-my-zsh"
 # export TERM=screen-256color
 # ryan
 export TERM="xterm-256color"
+
+# for neovide
+# export LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-"$HOME/.local/share/lunarvim"}"
+# export LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$HOME/.config/lvim"}"
+# export LUNARVIM_CACHE_DIR="${LUNARVIM_CACHE_DIR:-"$HOME/.cache/lvim"}"
+# export LUNARVIM_BASE_DIR="${LUNARVIM_BASE_DIR:-"$HOME/.local/share/lunarvim/lvim"}"
+
+# exec neovide -- -u "$LUNARVIM_BASE_DIR/init.lua" "$@"
+
+
+
 # ryan
 alias tmux="tmux -2"
 # export TERM=xterm-256color
@@ -44,9 +56,9 @@ alias tmux="tmux -2"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -173,7 +185,9 @@ alias log='cd /home/jungyongchoi/log'
 alias copylog='cp /home/jungyongchoi/analyser_log/*.py  /home/jungyongchoi/analyser_log/*.sh ./'
 alias cd....='cd ../..'
 alias cd..='cd ..'
-alias python='python3'
+# alias python='python3'
+# alias pip='python3 -m pip'
+# alias python3='python'
 alias dev='cd ~/share/dev'
 alias algo2='cd ~/share/dev/algorithm_data_structure/c_algorithm_2'
 alias moe='source ~/mount-oeserver.sh'
@@ -188,11 +202,14 @@ alias dotfile='cd /home/jungyongchoi/.dotfiles'
 # alias vi='nvim'
 alias lvim='~/.local/bin/lvim'
 alias vi='~/.local/bin/lvim'
+# alias vi='neovide --neovim-bin ~/.local/bin/lvim --multigrid --maximized --frame none'
+alias flake8="python3 -m flake8"
 
 # alias svi='sudo ~/nvim.appimage'
 # alias svim='sudo ~/nvim.appimage'
 alias gp='git pull'
 alias lcov='~/local/bin/lcov'
+alias myoe='ssh -p 1804 jungyong.choi@156.147.61.82'
 # alias tmux='tmux -2'
 
 # type emulate >/dev/null 2>/dev/null || alias emulate=true
@@ -289,6 +306,7 @@ export VISUAL='~/.local/bin/lvim'
 
 # source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
