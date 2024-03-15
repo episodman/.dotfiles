@@ -24,6 +24,7 @@ export PATH=$ANDROID_SDK_ROOT/emulator:$PATH
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
+export PATH=~/.npm-global/bin:$PATH
 
 # local bin
 # export PATH=~/.local/bin:$PATH
@@ -36,6 +37,9 @@ export ZSH="${HOME}/.oh-my-zsh"
 # export TERM=screen-256color
 # ryan
 export TERM="xterm-256color"
+export DISPLAY=:0
+
+GLFW_IM_MODULE=ibus
 
 # for neovide
 # export LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-"$HOME/.local/share/lunarvim"}"
@@ -183,6 +187,7 @@ alias pulsecode='cd /home/jungyongchoi/codes/pulseaudio-webos'
 # alias umicode='cd /home/jungyongchoi/oe-server2/code_jcl4tv/umicode/umi-pro'
 alias log='cd /home/jungyongchoi/log'
 alias copylog='cp /home/jungyongchoi/analyser_log/*.py  /home/jungyongchoi/analyser_log/*.sh ./'
+alias cpextlog='cp /home/jungyongchoi/analyser_log/extinput/*.py ./'
 alias cd....='cd ../..'
 alias cd..='cd ..'
 # alias python='python3'
@@ -210,6 +215,7 @@ alias flake8="python3 -m flake8"
 alias gp='git pull'
 alias lcov='~/local/bin/lcov'
 alias myoe='ssh -p 1804 jungyong.choi@156.147.61.82'
+# alias kitty='GLFW_IM_MODULE=ibus exec /usr/bin/kitty'
 # alias tmux='tmux -2'
 
 # type emulate >/dev/null 2>/dev/null || alias emulate=true
@@ -229,7 +235,7 @@ function confi()
     bitbake $1 -C configure;
 }
 
-function branch()
+function br()
 {
     git branch -a | grep $1;
 }

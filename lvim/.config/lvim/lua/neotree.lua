@@ -125,7 +125,7 @@ require("neo-tree").setup({
         filtered_items = {
             visible = false, -- when true, they will just be displayed differently than normal items
             hide_dotfiles = true,
-            hide_gitignored = true,
+            hide_gitignored = false,
             hide_hidden = false, -- only works on Windows for hidden files/directories
             hide_by_name = {
                 --"node_modules"
@@ -135,7 +135,7 @@ require("neo-tree").setup({
                 --"*/src/*/tsconfig.json",
             },
             always_show = { -- remains visible even if other settings would normally hide it
-                --".gitignored",
+                -- ".gitignore",
             },
             never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
                 --".DS_Store",
@@ -151,6 +151,7 @@ require("neo-tree").setup({
         -- time the current file is changed while the tree is open.
         group_empty_dirs = false,               -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
+        -- hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",  -- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position

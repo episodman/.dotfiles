@@ -17,6 +17,7 @@ import:
   - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
   - ~/.config/alacritty/solarized.yml
   - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
 
 
 # Any items in the `env` entry below will be added as
@@ -135,24 +136,16 @@ font:
     # family: Monaco
     # family: Mononoki Nerd Font
     family: D2Coding Nerd Font
-    family: MonoPlex kr Wide Nerd Text
-    family: Intel One Mono
-    family: Rec Mono Duotone
     family: CamingoCode
     family: Julia Mono
     family: Victor Mono Medium
     family: Victor Mono Bold
-    family: Victor Mono SemiBold
-    family: Source Code pro Medium
     family: PT Code
-    family: Cascadia Code PL
     family: Dank Mono
-    family: operator Mono lig
     family: Cascadia Mono
     family: monospace
     family: ComicShannsMono Nerd Font Mono
     family: Cascadia Mono Light
-    family: Cascadia Code PL
     family: noto sans mono cjk kr
     family: Liga SF Mono Nerd Font
     family: Source hans mono k
@@ -161,43 +154,75 @@ font:
     family: roboto mono
     family: Source han mono k
     family: Source Code Pro
-    family: ubuntu mono
     family: Pragmasevka
-    family: MonoLisa
-    family: MonoPlex kr Nerd Text
     family: monospace
-    family: CasMata Pro
-    family: consolas ligaturized v3
-    family: Dejavu Sans Mono
     family: consolas
     family: Bitstream Vera sans mono
-    family: Fira Code
     family: Red Hat Mono
-    family: Cascadia Code PL
     family: Cousine Nerd Font Mono
-    family: consolas NF
-    family: Hack Nerd Font Mono
-    family: D2Coding
-    family: NanumGothicCoding
     family: Inconsolata Semi expanded
     family: Fira Mono Nerd Font Mono
-    family: operator Mono
-    family: Maple Mono NF
-    family: Jetbrains Mono Medium
-    family: 0xProto
+    family: Cascadia Code PL
+    family: Agave
+    family: Source Code pro Medium
+    family: ubuntu mono
+    family: operator Mono Lig
     family: CommitMono
+    family: Dejavu Sans Mono
+    family: monospace
+    family: D2Coding
+    family: operator mono
+    family: Rec Mono Duotone
+    family: Rec Mono Casual
+    family: Cascadia Code PL
+    family: Intel One Mono
+    family: Mononoki
+    family: Monego
+    family: Input Mono Compressed
+    family: NanumGothicCoding
+    family: Monaspace Neon
+    family: Monaspace Xenon
+    family: Hack Nerd Font Mono
+    family: Pragmasevka
+    family: Cascadia Code PL
+    family: consolas ligaturized v3
+    family: Fira Code Medium
+    family: Maple Mono NF
+    family: D2Coding
+    family: MonoPlex kr
+    family: Victor Mono SemiBold
+    family: CasMata Pro
+    family: Jetbrains Mono Medium
+    family: Sarasa Mono K SemiBold
+    family: Pragmasevka
+    family: Monego
+    family: Monaspace Argon Medium
+    family: Monaspace Krypton Medium
+    family: operator mono lig
+    family: operator mono Medium
+    family: serious sans
+    family: 0xProto
+    family: HackSta
+    family: Pragmatasevka
+    family: MonoPlex kr
+    family: MonoPlex kr Wide Nerd
+    family: MonoLisa
+    family: MonoPlex kr Wide Nerd Medium
+    family: MonoPlex kr Medium
+    family: Jetbrains Mono Medium
+    family: Sarasa Term K
+    # family: Sarasa Mono K medium
 
     # The `style` can be specified to pick a specific face.
     style: Regular
     # style: bold
     # style: SemiBold
     # style: Medium
-    # style: Regular
+    # style: Retina
     # style: SemiLight
     # style: Light
     # style: Medium
     # style: text
-    # style: Retina
     # style: book
 
   # Bold font face
@@ -240,10 +265,15 @@ font:
   size: 10
   size: 10.5
   size: 11
-  # size: 11.5
-  # size: 12
+  size: 11.5
+  size: 12
   # size: 12.5
-  # size: 13
+  size: 13
+  size: 13.5
+  # size: 14
+  # size: 14.5
+  # size: 15
+  # size: 13.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -252,9 +282,9 @@ font:
    x: 0
    # x: 1
    y: 0
-   y: 1
-   # y: 2
-   # y: 3
+   # y: 1
+   # y: 5
+   y: 3
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the

@@ -60,15 +60,21 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.which_key.active = false
 -- -- Change theme settings
 -- lvim.colorscheme = "lunar"
--- lvim.colorscheme = "darkplus"
 -- lvim.colorscheme = "fleet"
-lvim.colorscheme = "onedark"
--- lvim.colorscheme = "catppuccin"
--- lvim.colorscheme = "kanagawa"
+-- lvim.colorscheme = "nightfly"
+lvim.colorscheme = "nordfox"
 -- lvim.colorscheme = "onenord"
 -- lvim.colorscheme = "solarized"
--- lvim.colorscheme = "gruvbox"
+-- lvim.colorscheme = "mellifluous"
+-- lvim.colorscheme = "kanagawa"
+-- lvim.colorscheme = "solarized-osaka"
 -- lvim.colorscheme = "rose-pine"
+-- lvim.colorscheme = "gruv-vsassist"
+-- lvim.colorscheme = "gruvbox"
+-- lvim.colorscheme = "catppuccin"
+-- lvim.colorscheme = "dracula"
+-- lvim.colorscheme = "onedark"
+-- lvim.colorscheme = "darkplus"
 
 
 lvim.builtin.alpha.active = true
@@ -140,12 +146,16 @@ lvim.builtin.cmp.cmdline.enable = true
 --   --Enable completion triggered by <c-x><c-o>
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
+--
 
 -- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
+
+    event = { "BufReadPre", "BufNewFile" },
     -- { command = "black", filetypes = { "python" } },
-    { command = "autopep8", filetypes = { "python" } },
+    { command = "autopep8",     filetypes = { "python" } },
+    { command = "clang_format", filetypes = { "cpp", "c" } },
     -- { command = "isort", filetypes = { "python" } },
     {
         -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
@@ -217,6 +227,7 @@ lvim.plugins = {
         -- end
     },
     { "rebelot/kanagawa.nvim" },
+    { "Mofiqul/dracula.nvim" },
     {
         "tpope/vim-fugitive"
     },
@@ -233,9 +244,12 @@ lvim.plugins = {
             "MunifTanjim/nui.nvim",
         }
     },
+    { "craftzdog/solarized-osaka.nvim" },
+    { "bartekprtc/gruv-vsassist.nvim" },
     -- { "MunifTanjim/nui.nvim" },
     { "marko-cerovac/material.nvim" },
     { "ishan9299/nvim-solarized-lua" },
+    { "bluz71/vim-nightfly-colors",    name = "nightfly", lazy = false, priority = 1000 },
     {
         "folke/todo-comments.nvim",
         -- requires = "nvim-lua/plenary.nvim",
@@ -258,9 +272,51 @@ lvim.plugins = {
         config = function() require "lsp_signature".on_attach() end,
     },
     { "catppuccin/nvim",          name = "catppuccin", priority = 1000 },
+    { "ramojus/mellifluous.nvim" },
+    { "EdenEast/nightfox.nvim" },
     { "ellisonleao/gruvbox.nvim", priority = 1000,     config = true,  opts = ... },
     { 'rose-pine/neovim',         name = 'rose-pine' },
     { 'chentoast/marks.nvim' },
+    {
+        -- 'stevearc/conform.nvim',
+        -- event = { "BufReadPre", "BufNewFile" },
+        -- config = function()
+        --     require("conform").setup({
+        --         formatters_by_ft = {
+        --             lua = { "stylua" },
+        --             svelte = { { "prettierd", "prettier" } },
+        --             javascript = { { "prettierd", "prettier" } },
+        --             typescript = { { "prettierd", "prettier" } },
+        --             javascriptreact = { { "prettierd", "prettier" } },
+        --             typescriptreact = { { "prettierd", "prettier" } },
+        --             json = { { "prettierd", "prettier" } },
+        --             graphql = { { "prettierd", "prettier" } },
+        --             java = { "google-java-format" },
+        --             kotlin = { "ktlint" },
+        --             ruby = { "standardrb" },
+        --             markdown = { { "prettierd", "prettier" } },
+        --             erb = { "htmlbeautifier" },
+        --             html = { "htmlbeautifier" },
+        --             bash = { "beautysh" },
+        --             proto = { "buf" },
+        --             rust = { "rustfmt" },
+        --             yaml = { "yamlfix" },
+        --             toml = { "taplo" },
+        --             css = { { "prettierd", "prettier" } },
+        --             scss = { { "prettierd", "prettier" } },
+        --             cpp = { { "prettierd", "prettier" } },
+        --         },
+        --     })
+
+        --     vim.keymap.set({ "n", "v" }, "<leader>f", function()
+        --         conform.format({
+        --             lsp_fallback = true,
+        --             async = false,
+        --             timeout_ms = 500,
+        --         })
+        --     end, { desc = "Format file or range (in visual mode)" })
+        -- end,
+    },
     {
         "keaising/im-select.nvim",
         config = function()
@@ -282,7 +338,7 @@ lvim.plugins = {
                 -- For macOS, default: "im-select"
                 -- For Linux, default: "fcitx5-remote" or "fcitx-remote" or "ibus"
                 -- default_command         = 'im-select.exe',
-                default_command         = 'fcitx-remote',
+                default_command         = 'fcitx5-remote',
 
                 -- Restore the default input method state when the following events are triggered
                 set_default_events      = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
@@ -315,24 +371,24 @@ lvim.plugins = {
     --     "karb94/neoscroll.nvim",
     --     -- event = "WinScrolled",
     --     event = "WinScrolled",
-    --     -- config = function()
-    --     --     require('neoscroll').setup()
-    --     -- end,
     --     config = function()
-    --         require('neoscroll').setup  ({
-    --             -- All these keys will be mapped to their corresponding default scrolling animation
-    --             mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
-    --                 '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-    --             hide_cursor = true,          -- Hide cursor while scrolling
-    --             stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-    --             use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-    --             respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-    --             cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-    --             easing_function = nil,       -- Default easing function
-    --             pre_hook = nil,              -- Function to run before the scrolling animation starts
-    --             post_hook = nil,             -- Function to run after the scrolling animation ends
-    --         })
-    --     end
+    --         require('neoscroll').setup()
+    --     end,
+    --     -- config = function()
+    --     --     require('neoscroll').setup({
+    --     --         -- All these keys will be mapped to their corresponding default scrolling animation
+    --     --         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+    --     --             '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+    --     --         hide_cursor = true,          -- Hide cursor while scrolling
+    --     --         stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+    --     --         use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+    --     --         respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+    --     --         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+    --     --         easing_function = nil,       -- Default easing function
+    --     --         pre_hook = nil,              -- Function to run before the scrolling animation starts
+    --     --         post_hook = nil,             -- Function to run after the scrolling animation ends
+    --     --     })
+    --     -- end
     -- },
     -- {
     --   "npxbr/glow.nvim",
@@ -360,6 +416,10 @@ require "option"
 require "neotree"
 require "colorscheme"
 require "autocmd"
+require "null-ls-notify"
+
+-- vim.opt.background = "light" -- always show tabs
+vim.opt.background = "dark" -- always show tabs
 -- require "rainbow_deli"
 
 
