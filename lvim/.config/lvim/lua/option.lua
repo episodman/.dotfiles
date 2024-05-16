@@ -13,6 +13,7 @@ vim.opt.foldlevelstart = -1
 vim.opt.foldenable = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.mouse = a
 --
 -- vim.opt.foldcolumn = '1' -- '0' is not bad
 -- vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value

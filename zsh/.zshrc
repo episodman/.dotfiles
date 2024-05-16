@@ -171,6 +171,7 @@ alias builddelay='bitbake lib32-audio-adaptation-layer-delay-gain -C configure'
 alias buildse='bitbake lib32-audio-adaptation-layer-soundengine -C configure'
 alias oeaudiodcode='cd /home/jungyongchoi/oe-server2/codes/audiod-pro'
 alias oecode='cd ~/oe-server2/codes'
+alias oebuild='cd ~/oe-server2/build'
 alias audiodcode='cd /home/jungyongchoi/codes/audiod-pro'
 # alias gtestaudiod='cd /home/jungyongchoi/oe-server2/code_jcl4tv/gtest_audiod/audiod-pro'
 alias gtestaudiod='cd /home/jungyongchoi/codes/gtest_audiod/audiod-pro'
@@ -190,8 +191,10 @@ alias copylog='cp /home/jungyongchoi/analyser_log/*.py  /home/jungyongchoi/analy
 alias cpextlog='cp /home/jungyongchoi/analyser_log/extinput/*.py ./'
 alias cd....='cd ../..'
 alias cd..='cd ..'
-# alias python='python3'
+alias python='python3'
+alias python3='python3.11'
 # alias pip='python3 -m pip'
+# alias python3='python'
 # alias python3='python'
 alias dev='cd ~/share/dev'
 alias algo2='cd ~/share/dev/algorithm_data_structure/c_algorithm_2'
@@ -236,6 +239,11 @@ function confi()
 }
 
 function br()
+{
+    git branch -a | grep $1;
+}
+
+function gb()
 {
     git branch -a | grep $1;
 }

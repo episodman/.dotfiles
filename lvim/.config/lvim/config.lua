@@ -60,21 +60,26 @@ lvim.builtin.telescope.defaults.mappings = {
 lvim.builtin.which_key.active = false
 -- -- Change theme settings
 -- lvim.colorscheme = "lunar"
--- lvim.colorscheme = "fleet"
 -- lvim.colorscheme = "nightfly"
-lvim.colorscheme = "nordfox"
 -- lvim.colorscheme = "onenord"
 -- lvim.colorscheme = "solarized"
--- lvim.colorscheme = "mellifluous"
--- lvim.colorscheme = "kanagawa"
--- lvim.colorscheme = "solarized-osaka"
--- lvim.colorscheme = "rose-pine"
 -- lvim.colorscheme = "gruv-vsassist"
--- lvim.colorscheme = "gruvbox"
--- lvim.colorscheme = "catppuccin"
 -- lvim.colorscheme = "dracula"
--- lvim.colorscheme = "onedark"
--- lvim.colorscheme = "darkplus"
+-- lvim.colorscheme = "gruvbox"
+-- lvim.colorscheme = "mellifluous"
+-- lvim.colorscheme = "gruvbuddy"
+-- lvim.colorscheme = "material-darker"
+lvim.colorscheme = "darkplus"
+lvim.colorscheme = "fleet"
+lvim.colorscheme = "solarized-osaka"
+lvim.colorscheme = "oldworld"
+lvim.colorscheme = "rose-pine"
+lvim.colorscheme = "catppuccin"
+lvim.colorscheme = "nordfox"
+lvim.colorscheme = "vscode"
+lvim.colorscheme = "onedark"
+lvim.colorscheme = "material"
+lvim.colorscheme = "kanagawa"
 
 
 lvim.builtin.alpha.active = true
@@ -105,6 +110,8 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.auto_install = true
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.rainbow.enable = true
+lvim.builtin.treesitter.rainbow.disable = { "jsx" }
+lvim.builtin.treesitter.rainbow.strategy = require('ts-rainbow').strategy.global
 lvim.builtin.treesitter.rainbow.extended_mode = true
 lvim.builtin.treesitter.rainbow.max_file_lines = nil
 lvim.builtin.treesitter.rainbow.query = 'rainbow-parens'
@@ -209,9 +216,6 @@ lvim.plugins = {
         "christianchiarulli/harpoon"
     },
     {
-        "lunarvim/Onedarker.nvim"
-    },
-    {
         "LunarVim/darkplus.nvim"
     },
     {
@@ -225,6 +229,12 @@ lvim.plugins = {
         -- setup = function()
         --  vim.o.timeoutlen = 500
         -- end
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
     },
     { "rebelot/kanagawa.nvim" },
     { "Mofiqul/dracula.nvim" },
@@ -246,10 +256,17 @@ lvim.plugins = {
     },
     { "craftzdog/solarized-osaka.nvim" },
     { "bartekprtc/gruv-vsassist.nvim" },
+    { "tjdevries/gruvbuddy.nvim" },
     -- { "MunifTanjim/nui.nvim" },
     { "marko-cerovac/material.nvim" },
     { "ishan9299/nvim-solarized-lua" },
-    { "bluz71/vim-nightfly-colors",    name = "nightfly", lazy = false, priority = 1000 },
+    {
+        "dgox16/oldworld.nvim",
+        lazy = false,
+        priority = 1000,
+        config = true,
+    },
+    { "bluz71/vim-nightfly-colors", name = "nightfly",                          lazy = false, priority = 1000 },
     {
         "folke/todo-comments.nvim",
         -- requires = "nvim-lua/plenary.nvim",
@@ -265,7 +282,7 @@ lvim.plugins = {
     { 'Mofiqul/vscode.nvim' },
     -- { 'psliwka/vim-smoothie' },
     { "tpope/vim-repeat" },
-    { 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' },
+    { 'kevinhwang91/nvim-ufo',      dependencies = 'kevinhwang91/promise-async' },
     {
         "ray-x/lsp_signature.nvim",
         event = "BufRead",
@@ -317,6 +334,11 @@ lvim.plugins = {
         --     end, { desc = "Format file or range (in visual mode)" })
         -- end,
     },
+    { "HiPhish/rainbow-delimiters.nvim" },
+    { "HiPhish/nvim-ts-rainbow2" },
+    {
+        "p00f/nvim-ts-rainbow"
+    },
     {
         "keaising/im-select.nvim",
         config = function()
@@ -329,7 +351,6 @@ lvim.plugins = {
                 --               "1" for Fcitx
                 --               "xkb:us::eng" for ibus
                 -- You can use `im-select` or `fcitx5-remote -n` to get the IM's name
-                -- default_im_select       = "com.apple.keylayout.ABC",
                 default_im_select       = "1",
 
                 -- Can be binary's name or binary's full path,
@@ -337,8 +358,7 @@ lvim.plugins = {
                 -- For Windows/WSL, default: "im-select.exe"
                 -- For macOS, default: "im-select"
                 -- For Linux, default: "fcitx5-remote" or "fcitx-remote" or "ibus"
-                -- default_command         = 'im-select.exe',
-                default_command         = 'fcitx5-remote',
+                default_command         = "fcitx5-remote",
 
                 -- Restore the default input method state when the following events are triggered
                 set_default_events      = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
@@ -356,7 +376,7 @@ lvim.plugins = {
                 async_switch_im         = true
             })
         end,
-    },
+    }
     -- {
     --     "lukas-reineke/indent-blankline.nvim",
     --     config = function()
@@ -417,10 +437,10 @@ require "neotree"
 require "colorscheme"
 require "autocmd"
 require "null-ls-notify"
+require "rainbowdeli"
 
 -- vim.opt.background = "light" -- always show tabs
 vim.opt.background = "dark" -- always show tabs
--- require "rainbow_deli"
 
 
 

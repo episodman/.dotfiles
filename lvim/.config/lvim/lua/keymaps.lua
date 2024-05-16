@@ -131,6 +131,12 @@ vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { 
 
 -- for telescope
 --
+--
+-- if vim.loop.os_uname().sysname == "Linux" then
+--     vim.api.nvim_set_keymap('n', '<ESC>', [[<cmd>!fcitx5-remote -c<cr>]],
+--         { noremap = true, silent = true })
+-- end
+
 vim.api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require('telescope.builtin').marks()<cr>]],
     { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>pf', [[<cmd>lua require('telescope.builtin').find_files()<cr>]],
@@ -173,6 +179,9 @@ vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin
 -- These functions are stored in harpoon.  A plugn that I am developing
 --
 --
+-- vim.api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>]],
+--     { noremap = true, silent = true })
+
 --
 -- nnoremap("<leader>a", function() require("harpoon.mark").add_file() end, silent)
 -- nnoremap("<C-e>", function() require("harpoon.ui").toggle_quick_menu() end, silent)
@@ -251,3 +260,6 @@ vim.g.vim_json_syntax_conceal = 0
 vim.opt.listchars:append("eol:↴")
 
 vim.opt.clipboard = 'unnamedplus'
+
+
+print(vim.loop.os_uname().sysname)
