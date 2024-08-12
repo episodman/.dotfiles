@@ -53,6 +53,7 @@ GLFW_IM_MODULE=ibus
 
 # ryan
 alias tmux="tmux -2"
+alias tig='TERM=xterm-256color tig'
 # export TERM=xterm-256color
 # export TERM=screen-256color-bce
 
@@ -209,8 +210,8 @@ alias dotfile='cd /home/jungyongchoi/.dotfiles'
 # alias vi='nvim'
 # alias vi='nvim'
 alias lvim='~/.local/bin/lvim'
-alias vi='~/.local/bin/lvim'
-# alias vi='neovide --neovim-bin ~/.local/bin/lvim --multigrid --maximized --frame none'
+alias vi='/usr/local/bin/nvim'
+alias neovide='neovide --neovim-bin ~/.local/bin/lvim --multigrid --maximized --frame none'
 alias flake8="python3 -m flake8"
 
 # alias svi='sudo ~/nvim.appimage'
@@ -218,6 +219,8 @@ alias flake8="python3 -m flake8"
 alias gp='git pull'
 alias lcov='~/local/bin/lcov'
 alias myoe='ssh -p 1804 jungyong.choi@156.147.61.82'
+alias newoe='bee0 jungyongchoi ssh -a'
+
 # alias kitty='GLFW_IM_MODULE=ibus exec /usr/bin/kitty'
 # alias tmux='tmux -2'
 
@@ -313,10 +316,10 @@ function del()
 # export EDITOR='~/nvim.appimage'
 # export VISUAL='~/nvim.appimage'
 # export BAT_THEME="onedark"
-# export EDITOR=nvim
-# export VISUAL=nvim
-export EDITOR='~/.local/bin/lvim'
-export VISUAL='~/.local/bin/lvim'
+export EDITOR=nvim
+export VISUAL=nvim
+# export EDITOR='~/.local/bin/lvim'
+# export VISUAL='~/.local/bin/lvim'
 
 # source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 # source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

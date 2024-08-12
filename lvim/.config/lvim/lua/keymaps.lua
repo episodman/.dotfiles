@@ -48,9 +48,9 @@ vim.api.nvim_set_keymap('n', '<silent> <F9>', ':Rgrep<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true })
 -- vim.api.nvim_set_keymap('n', '<leader>w',':wa<CR>')
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>x', ':BufferLinePickClose<CR>', { noremap = true })
-
 -- bufferline
+vim.api.nvim_set_keymap('n', '<leader>x', ':BufferLinePickClose<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>b', ':BufferLinePick<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-h>', ':BufferLineCyclePrev<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-l>', ':BufferLineCycleNext<CR>', { noremap = true })
 
@@ -260,6 +260,7 @@ vim.g.vim_json_syntax_conceal = 0
 vim.opt.listchars:append("eol:↴")
 
 vim.opt.clipboard = 'unnamedplus'
+
 
 
 print(vim.loop.os_uname().sysname)

@@ -89,6 +89,9 @@ require("gruvbox").setup({
     overrides = {},
     dim_inactive = false,
     transparent_mode = false,
+    -- palette_overrides = {
+    --     bright_green = "#990000",
+    -- }
 })
 
 require("gruv-vsassist").setup({
@@ -163,7 +166,9 @@ require 'mellifluous'.setup({
         },
         startify = true,
     },
-}) -- Default options
+})
+
+-- Default options
 require('nightfox').setup({
     options = {
         -- Compiled file's destination location
@@ -182,20 +187,16 @@ require('nightfox').setup({
                 tritan = 0,                -- Severity [0,1] for tritan (blue)
             },
         },
-        styles = {             -- Style to be applied to different syntax groups
-            -- comments = "italic", -- Value is any valid attr-list value `:help attr-list`
-            comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
-            -- conditionals = "italic",
-            conditionals = "bold",
+        styles = {               -- Style to be applied to different syntax groups
+            comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "italic",
             constants = "NONE",
             functions = "bold",
-            -- keywords = "italic",
-            keywords = "italic, bold",
+            keywords = "italic",
             numbers = "NONE",
             operators = "NONE",
             strings = "NONE",
-            -- types = "italic",
-            types = "bold",
+            types = "italic",
             variables = "NONE",
         },
         inverse = { -- Inverse highlight for different types
@@ -211,6 +212,9 @@ require('nightfox').setup({
     specs = {},
     groups = {},
 })
+
+-- setup must be called before loading
+vim.cmd("colorscheme nightfox")
 
 -- setup must be called before loading
 vim.cmd("colorscheme nightfox")
@@ -248,11 +252,17 @@ require("solarized-osaka").setup({
     on_highlights = function(highlights, colors) end,
 })
 
-require('rose-pine').setup({
+require("rose-pine").setup({
     variant = "auto",      -- auto, main, moon, or dawn
-    dark_variant = "main", -- main, moon, or dawn
+    dark_variant = "moon", -- main, moon, or dawn
     dim_inactive_windows = false,
     extend_background_behind_borders = true,
+
+    enable = {
+        terminal = true,
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        migrations = true,        -- Handle deprecated options automatically
+    },
 
     styles = {
         bold = true,
@@ -268,6 +278,8 @@ require('rose-pine').setup({
         error = "love",
         hint = "iris",
         info = "foam",
+        note = "pine",
+        todo = "rose",
         warn = "gold",
 
         git_add = "foam",
@@ -281,16 +293,12 @@ require('rose-pine').setup({
         git_text = "rose",
         git_untracked = "subtle",
 
-        headings = {
-            h1 = "iris",
-            h2 = "foam",
-            h3 = "rose",
-            h4 = "gold",
-            h5 = "pine",
-            h6 = "foam",
-        },
-        -- Alternatively, set all headings at once.
-        -- headings = "subtle",
+        h1 = "iris",
+        h2 = "foam",
+        h3 = "rose",
+        h4 = "gold",
+        h5 = "pine",
+        h6 = "foam",
     },
 
     highlight_groups = {
@@ -310,14 +318,13 @@ require('rose-pine').setup({
         -- end
     end,
 })
-vim.cmd('colorscheme rose-pine')
 
 require('kanagawa').setup({
     compile = false,   -- enable compiling the colorscheme
     undercurl = false, -- enable undercurls
     commentStyle = { italic = true },
     -- commentStyle = {},
-    functionStyle = { bold = true },
+    functionStyle = {},
     keywordStyle = { italic = true },
     -- keywordStyle = {},
     statementStyle = { bold = true },
@@ -336,24 +343,24 @@ require('kanagawa').setup({
     end,
     theme = "wave",    -- Load "wave" theme when 'background' option is not set
     background = {     -- map the value of 'background' option to a theme
+        -- dark = "wave", -- try "dragon" !
         dark = "wave", -- try "dragon" !
-        -- dark = "dragon", -- try "dragon" !
         light = "lotus"
     },
 })
 
 require("catppuccin").setup({
     -- flavour = "latte", -- latte, frappe, macchiato, mocha
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = {     -- :h background
+    -- flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
         light = "latte",
         dark = "mocha",
     },
     transparent_background = false, -- disables setting the background color.
-    show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
-    term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+    show_end_of_buffer = true,      -- shows the '~' characters after the end of buffers
+    term_colors = true,             -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
-        enabled = false,            -- dims the background color of inactive window
+        enabled = true,             -- dims the background color of inactive window
         shade = "dark",
         percentage = 0.15,          -- percentage of the shade to apply to the inactive window
     },
@@ -361,18 +368,17 @@ require("catppuccin").setup({
     no_bold = false,                -- Force no bold
     no_underline = false,           -- Force no underline
     styles = {                      -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = {},              -- Change the style of comments
-        conditionals = {},
+        comments = { "italic" },    -- Change the style of comments
+        conditionals = { "italic" },
         loops = {},
         functions = { "bold" },
-        -- keywords = { "yyp" },
         keywords = { "bold" },
         strings = {},
         variables = {},
         numbers = {},
-        booleans = { "bold" },
+        booleans = {},
         properties = {},
-        types = { "bold" },
+        types = {},
         -- types = {},
         operators = {},
     },
@@ -381,7 +387,7 @@ require("catppuccin").setup({
     integrations = {
         cmp = true,
         gitsigns = true,
-        nvimtree = true,
+        nvimtree = false,
         treesitter = true,
         notify = false,
         mini = false,
@@ -389,36 +395,13 @@ require("catppuccin").setup({
     },
 })
 
-require('onenord').setup({
-    theme = nil,     -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
-    borders = true,  -- Split window borders
-    fade_nc = false, -- Fade non-current windows, making them more distinguishable
-    -- Style that is applied to various groups: see `highlight-args` for options
-    styles = {
-        comments = "NONE",
-        strings = "NONE",
-        keywords = "bold",
-        functions = "bold",
-        variables = "NONE",
-        diagnostics = "NONE",
-    },
-    disable = {
-        background = false, -- Disable setting the background color
-        cursorline = false, -- Disable the cursorline
-        eob_lines = true,   -- Hide the end-of-buffer lines
-    },
-    -- Inverse highlight for different groups
-    inverse = {
-        match_paren = false,
-    },
-    custom_highlights = {}, -- Overwrite default highlight groups
-    custom_colors = {},     -- Overwrite default colors
-})
 
 -- Lua
 require('onedark').setup {
     -- Main options --
-    style = 'dark',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+    -- style = 'warm',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+    -- style = 'cool',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+    style = 'warmer',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
     transparent = false,          -- Show/hide background
     term_colors = true,           -- Change terminal color as per the selected theme style
     ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
@@ -432,9 +415,9 @@ require('onedark').setup {
     -- Options are italic, bold, underline, none
     -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
     code_style = {
-        comments = 'none',
+        comments = 'italic',
         keywords = 'italic',
-        functions = 'bold',
+        functions = 'none',
         strings = 'none',
         variables = 'none'
     },
@@ -500,7 +483,7 @@ require('material').setup({
         "gitsigns",
         -- "hop",
         "indent-blankline",
-        "lspsaga",
+        -- "lspsaga",
         -- "mini",
         -- "neogit",
         "nvim-cmp",

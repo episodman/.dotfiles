@@ -1,6 +1,6 @@
 vim.opt.relativenumber = true
-vim.opt.shiftwidth = 4  -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 4     -- insert 2 spaces for a tab
+vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 4 -- insert 2 spaces for a tab
 vim.opt.showtabline = 4 -- always show tabs
 -- vim.lsp.set_log_level(“off”)
 vim.g.loaded_netrw = 1
@@ -21,30 +21,30 @@ vim.o.mouse = a
 -- vim.opt.foldenable = true
 
 if vim.g.neovide then
-    -- vim.o.guifont = "CommitMono-jy3:h11:#h-none"    -- text below applies for VimScript
-    vim.o.guifont = "CommitMono:h11" -- text below applies for VimScript
-    -- vim.o.guifont = "CommitMono-jy3:h11" -- text below applies for VimScript
-    -- vim.o.guifont = "Hack Nerd Font Mono:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "Fira Code:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "D2Coding:h12:#h-none"          -- text below applies for VimScript
-    -- vim.o.guifont = "Operator Mono:h12:#h-none"     -- text below applies for VimScript
-    -- vim.o.guifont = "D2Coding ligature:h12:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "consolas:h11:#h-none"                -- text below applies for VimScript
-    -- vim.o.guifont = "consolas ligaturized v3:h12:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "hack nerd font mono jbm ligatured ccg:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "NanumGothicCoding:h12:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "JetBrains_Mono:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "Red_Hat_Mono_Medium:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "Cascadia_Code_PL_Semi_Light:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "Cascadia_Code_PL_Light:h11:#h-none"     -- text below applies for VimScript
-    -- vim.o.guifont = "Cascadia_Code_PL, D2Coding:h11:#h-none" -- text below applies for VimScript
-    -- vim.o.guifont = "JetBrains_Mono:h10" -- text below applies for VimScript
-    -- vim.g.neovide_cursor_trail_size = 0.3
-    -- vim.g.neovide_cursor_trail_size = 0.8
-    -- vim.g.neovide_cursor_animation_length = 0.13
-    -- vim.g.neovide_cursor_animation_length = 0.02
-    -- vim.g.neovide_cursor_vfx_mode = "torpedo"
-    -- vim.g.neovide_cursor_vfx_mode = "railgun"
+	-- vim.o.guifont = "CommitMono-jy3:h11:#h-none"    -- text below applies for VimScript
+	vim.o.guifont = "Monolisa:h12" -- text below applies for VimScript
+	-- vim.o.guifont = "CommitMono-jy3:h11" -- text below applies for VimScript
+	-- vim.o.guifont = "Hack Nerd Font Mono:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "Fira Code:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "D2Coding:h12:#h-none"          -- text below applies for VimScript
+	-- vim.o.guifont = "Operator Mono:h12:#h-none"     -- text below applies for VimScript
+	-- vim.o.guifont = "D2Coding ligature:h12:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "consolas:h11:#h-none"                -- text below applies for VimScript
+	-- vim.o.guifont = "consolas ligaturized v3:h12:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "hack nerd font mono jbm ligatured ccg:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "NanumGothicCoding:h12:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "JetBrains_Mono:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "Red_Hat_Mono_Medium:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "Cascadia_Code_PL_Semi_Light:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "Cascadia_Code_PL_Light:h11:#h-none"     -- text below applies for VimScript
+	-- vim.o.guifont = "Cascadia_Code_PL, D2Coding:h11:#h-none" -- text below applies for VimScript
+	-- vim.o.guifont = "JetBrains_Mono:h10" -- text below applies for VimScript
+	-- vim.g.neovide_cursor_trail_size = 0.3
+	-- vim.g.neovide_cursor_trail_size = 0.8
+	-- vim.g.neovide_cursor_animation_length = 0.13
+	-- vim.g.neovide_cursor_animation_length = 0.02
+	-- vim.g.neovide_cursor_vfx_mode = "torpedo"
+	-- vim.g.neovide_cursor_vfx_mode = "railgun"
 end
 
 -- local rainbow_delimiters = require 'rainbow-delimiters'

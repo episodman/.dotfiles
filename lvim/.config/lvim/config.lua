@@ -65,21 +65,33 @@ lvim.builtin.which_key.active = false
 -- lvim.colorscheme = "solarized"
 -- lvim.colorscheme = "gruv-vsassist"
 -- lvim.colorscheme = "dracula"
--- lvim.colorscheme = "gruvbox"
--- lvim.colorscheme = "mellifluous"
 -- lvim.colorscheme = "gruvbuddy"
--- lvim.colorscheme = "material-darker"
-lvim.colorscheme = "darkplus"
 lvim.colorscheme = "fleet"
-lvim.colorscheme = "solarized-osaka"
-lvim.colorscheme = "oldworld"
-lvim.colorscheme = "rose-pine"
-lvim.colorscheme = "catppuccin"
-lvim.colorscheme = "nordfox"
 lvim.colorscheme = "vscode"
-lvim.colorscheme = "onedark"
-lvim.colorscheme = "material"
+lvim.colorscheme = "nordfox"
+lvim.colorscheme = "mellifluous"
+lvim.colorscheme = "solarized-osaka-moon"
+lvim.colorscheme = "rose-pine-moon"
+lvim.colorscheme = "solarized-osaka-moon"
+lvim.colorscheme = "catppuccin"
+lvim.colorscheme = "nightfox"
+lvim.colorscheme = "nightfox"
+lvim.colorscheme = "solarized-osaka"
+lvim.colorscheme = "terafox"
+lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "tokyonight-moon"
+lvim.colorscheme = "flexoki"
+lvim.colorscheme = "oldworld"
 lvim.colorscheme = "kanagawa"
+lvim.colorscheme = "darkplus"
+lvim.colorscheme = "kanagawa-dragon"
+lvim.colorscheme = "PaperColor"
+lvim.colorscheme = "solarized-low"
+lvim.colorscheme = "solarized-osaka-day"
+lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "onedark"
+lvim.colorscheme = "material-darker"
+lvim.colorscheme = "material"
 
 
 lvim.builtin.alpha.active = true
@@ -90,6 +102,10 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.active = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+
+lvim.builtin.telescope.defaults.vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename',
+    '--line-number', '--column',
+    '--smart-case', '--ignore-file', '.gitignore' }
 
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.ensure_installed = {
@@ -230,6 +246,7 @@ lvim.plugins = {
         --  vim.o.timeoutlen = 500
         -- end
     },
+    { "kepano/flexoki" },
     {
         "folke/tokyonight.nvim",
         lazy = false,
@@ -243,16 +260,6 @@ lvim.plugins = {
     },
     {
         "navarasu/onedark.nvim"
-    },
-    { "rmehri01/onenord.nvim" },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-        }
     },
     { "craftzdog/solarized-osaka.nvim" },
     { "bartekprtc/gruv-vsassist.nvim" },
@@ -288,12 +295,24 @@ lvim.plugins = {
         event = "BufRead",
         config = function() require "lsp_signature".on_attach() end,
     },
-    { "catppuccin/nvim",          name = "catppuccin", priority = 1000 },
+    { "catppuccin/nvim",           name = "catppuccin", priority = 1000 },
     { "ramojus/mellifluous.nvim" },
+    { "NLKNguyen/papercolor-theme" },
     { "EdenEast/nightfox.nvim" },
-    { "ellisonleao/gruvbox.nvim", priority = 1000,     config = true,  opts = ... },
-    { 'rose-pine/neovim',         name = 'rose-pine' },
+    { "ellisonleao/gruvbox.nvim",  priority = 1000,     config = true,  opts = ... },
+    { 'rose-pine/neovim',          name = 'rose-pine' },
     { 'chentoast/marks.nvim' },
+    -- { 'nvim-tree/nvim-tree.lua' },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        }
+    },
     {
         -- 'stevearc/conform.nvim',
         -- event = { "BufReadPre", "BufNewFile" },
@@ -444,6 +463,11 @@ vim.opt.background = "dark" -- always show tabs
 
 
 
+-- for i = 1, 9, 1 do
+--     vim.keymap.set("n", string.format("<A-%s>", i), function()
+--         vim.api.nvim_set_current_buf(vim.t.bufs[i])
+--     end)
+-- end
 -- dependencies "keymaps"
 -- dependencies "option"
 -- dependencies "eotree"
